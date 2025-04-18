@@ -1,4 +1,3 @@
-import './blocks/fake-block';
 import './blocks/hero-area';
 import './blocks/two-col-image-text';
 import './blocks/services-wildcards';
