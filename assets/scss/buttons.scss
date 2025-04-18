@@ -1,0 +1,40 @@
+a.wp-block-button__link, .wp-element-button, .pw-solid-button {
+    background-color: $pw_yellow; 
+    color: $pw_purple; 
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600; 
+    padding: 0;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-radius: 7px;
+    padding-left: 6px;
+    padding-right: 6px;
+    transition: all 0.25s ease-in;
+    &:hover {
+        background-color: $pw_purple; 
+        color: $pw_yellow; 
+    }
+}
+
+.outline-pw-button {
+    background-color: transparent; 
+    border: solid 1px $pw_yellow; 
+    color: $pw_purple; 
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600; 
+    padding: 0;
+    transition: all 0.25s ease-in;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-radius: 7px;
+    padding-left: 6px;
+    padding-right: 6px;
+    &:hover {
+        background-color: $pw_purple; 
+        color: $pw_yellow; 
+        border: solid 1px $pw_purple; 
+    }
+}

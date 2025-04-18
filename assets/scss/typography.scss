@@ -1,0 +1,64 @@
+// ===== Typography: Headings =====
+// Font family fallback
+$font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+// Headings base styles
+.h1, h1 {
+  font-family: $font-heading;
+  font-size: 3rem;        // 48px
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.h2, h2 {
+  font-family: $font-heading;
+  font-size: 2.25rem;     // 36px
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.h3, h3 {
+  font-family: $font-heading;
+  font-size: 1.75rem;     // 28px
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.h4, h4 {
+  font-family: $font-heading;
+  font-size: 1.5rem;      // 24px
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.h5, h5 {
+  font-family: $font-heading;
+  font-size: 1.25rem;     // 20px
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.h6, h6 {
+  font-family: $font-heading;
+  font-size: 1.125rem;    // 18px
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+// Optional utility class if you want to apply this style elsewhere
+p, .p {
+  font-family: $font-body;
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 400;
+  color: $pw_text_color
+}
+
+a {
+    font-weight: 600;
+    color: $pw_pink; 
+    &:hover {
+        color: $pw_purple; 
+    }
+}
