@@ -12,6 +12,10 @@ registerBlockType('precious-works/services-wildcards', {
             type: 'string',
             default: 'Wildcard Section Title',
         },
+        wildcardSubtitle: {
+            type: 'string',
+            default: '',
+        },
         wildcards: {
             type: 'array',
             default: [],
@@ -28,6 +32,12 @@ registerBlockType('precious-works/services-wildcards', {
                     source: 'attribute',
                     selector: 'img',
                     attribute: 'src',
+                },
+                cardAlt: {
+                    type: 'string',
+                    source: 'attribute',
+                    selector: 'img',
+                    attribute: 'alt',
                 },
                 cardDescription: {
                     type: 'string',

@@ -1,0 +1,38 @@
+.wildcard-section {
+    .wildcard-container {
+        .wildcard-title-row {
+            padding-bottom: 40px; 
+            h2 {
+                margin-bottom: 15px; 
+            }
+            p {
+                font-size: 18px; 
+                font-weight: 600;
+                font-style: italic;
+            }
+
+        }
+        .wildcard-row {
+            .wildcard-col {
+                padding-bottom: 25px; 
+                .wildcard-card {
+                    img {
+                        padding-bottom: 12px; 
+                    }
+                    .card-title {
+                        width: 70%;
+                        margin-bottom: 12px; 
+                        h4 {
+                            @extend .h5; 
+                        }
+                    }
+                    .card-description {
+                        width: 90%; 
+                    }
+                }
+               
+                
+            }
+        }
+    }
+}

@@ -497,6 +497,7 @@ const Edit = props => {
     wildcards.push({
       cardTitle: '',
       cardIcon: '',
+      cardAlt: '',
       cardDescription: ''
     });
     setAttributes({
@@ -530,14 +531,17 @@ const Edit = props => {
       value: wildcard.cardDescription,
       onChange: value => updateWildcard(index, 'cardDescription', value)
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.MediaUpload, {
-      onSelect: media => updateWildcard(index, 'cardIcon', media.url),
+      onSelect: media => {
+        updateWildcard(index, 'cardIcon', media.url);
+        updateWildcard(index, 'cardAlt', media.alt || '');
+      },
       allowedTypes: ['image'],
       render: ({
         open
       }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
         children: [wildcard.cardIcon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
           src: wildcard.cardIcon,
-          alt: "",
+          alt: wildcard.cardAlt || '',
           style: {
             maxWidth: '100px',
             display: 'block',
@@ -561,10 +565,16 @@ const Edit = props => {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: "Wildcards",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-          placeholder: "Wilcard Section Title",
+          placeholder: "Wildcard Section Title",
           value: attributes.wildcardSectionTitle,
           onChange: value => setAttributes({
             wildcardSectionTitle: value
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextareaControl, {
+          placeholder: "Wildcard Subtitle",
+          value: attributes.wildcardSubtitle,
+          onChange: value => setAttributes({
+            wildcardSubtitle: value
           })
         }), wildCardFields, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
           isSecondary: true,
@@ -576,9 +586,11 @@ const Edit = props => {
       ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)(),
       className: "wildcard-section",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        class: "container wildcard-container",
+        className: "container wildcard-container",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
           children: attributes.wildcardSectionTitle
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+          children: attributes.wildcardSubtitle
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "wildcard-row row",
           children: attributes.wildcards.map((wildcard, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
@@ -587,7 +599,7 @@ const Edit = props => {
               className: "single-wildcard-row",
               children: [wildcard.cardIcon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
                 src: wildcard.cardIcon,
-                alt: "",
+                alt: wildcard.cardAlt || '',
                 style: {
                   maxWidth: '80px',
                   marginBottom: '0.5em'
@@ -635,6 +647,10 @@ __webpack_require__.r(__webpack_exports__);
       type: 'string',
       default: 'Wildcard Section Title'
     },
+    wildcardSubtitle: {
+      type: 'string',
+      default: ''
+    },
     wildcards: {
       type: 'array',
       default: [],
@@ -651,6 +667,12 @@ __webpack_require__.r(__webpack_exports__);
           source: 'attribute',
           selector: 'img',
           attribute: 'src'
+        },
+        cardAlt: {
+          type: 'string',
+          source: 'attribute',
+          selector: 'img',
+          attribute: 'alt'
         },
         cardDescription: {
           type: 'string',
@@ -691,27 +713,33 @@ const Save = ({
 }) => {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save(),
-    className: "container",
+    className: "wildcard-section",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "wildcard-container",
-      children: [attributes.wildcardSectionTitle && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
-        children: attributes.wildcardSectionTitle
+      className: "wildcard-container container",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "wildcard-title-row row",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "col-sm-6 title-col",
+          children: [attributes.wildcardSectionTitle && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
+            children: attributes.wildcardSectionTitle
+          }), attributes.wildcardSubtitle && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+            children: attributes.wildcardSubtitle
+          })]
+        })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "wildcard-row row",
+        className: "wildcard-row row g-5",
         children: attributes.wildcards.map((wildcard, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: "col-sm-6",
+          className: `wildcard-col col-sm-6 ${index % 2 === 0 ? 'me-auto' : 'ms-auto'}`,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
             className: "wildcard-card",
             children: [wildcard.cardIcon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
               src: wildcard.cardIcon,
-              alt: "",
-              style: {
-                maxWidth: '80px',
-                marginBottom: '0.5em'
-              }
+              alt: wildcard.cardAlt || ''
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
               className: "card-title",
-              children: wildcard.cardTitle
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
+                children: wildcard.cardTitle
+              })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
               className: "card-description",
               children: wildcard.cardDescription

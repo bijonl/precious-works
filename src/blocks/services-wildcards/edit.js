@@ -4,42 +4,40 @@ import {
     MediaUpload,
     MediaUploadCheck,
 } from '@wordpress/block-editor';
-import {
-    Fragment
-} from '@wordpress/element';
+import { Fragment } from '@wordpress/element';
 import {
     PanelBody,
     TextControl,
     TextareaControl,
     Button,
-    IconButton
+    IconButton,
 } from '@wordpress/components';
 
 const Edit = (props) => {
     const { attributes, setAttributes } = props;
 
     const handleAddWildcard = () => {
-        const wildcards = [ ...attributes.wildcards ];
+        const wildcards = [...attributes.wildcards];
         wildcards.push({
             cardTitle: '',
             cardIcon: '',
+            cardAlt: '',
             cardDescription: '',
         });
         setAttributes({ wildcards });
     };
 
     const handleRemoveWildcards = (index) => {
-        const wildcards = [ ...attributes.wildcards ];
+        const wildcards = [...attributes.wildcards];
         wildcards.splice(index, 1);
         setAttributes({ wildcards });
     };
 
     const updateWildcard = (index, field, value) => {
-        const wildcards = [ ...attributes.wildcards ];
+        const wildcards = [...attributes.wildcards];
         wildcards[index][field] = value;
         setAttributes({ wildcards });
     };
-
 
     const wildCardFields = attributes.wildcards.map((wildcard, index) => (
         <div key={index} style={{ marginBottom: '1em' }}>
@@ -54,16 +52,17 @@ const Edit = (props) => {
                 onChange={(value) => updateWildcard(index, 'cardDescription', value)}
             />
             <MediaUpload
-                onSelect={(media) =>
-                    updateWildcard(index, 'cardIcon', media.url)
-                }
+                onSelect={(media) => {
+                    updateWildcard(index, 'cardIcon', media.url);
+                    updateWildcard(index, 'cardAlt', media.alt || '');
+                }}
                 allowedTypes={['image']}
                 render={({ open }) => (
                     <>
                         {wildcard.cardIcon && (
                             <img
                                 src={wildcard.cardIcon}
-                                alt=""
+                                alt={wildcard.cardAlt || ''}
                                 style={{ maxWidth: '100px', display: 'block', marginBottom: '0.5em' }}
                             />
                         )}
@@ -82,16 +81,19 @@ const Edit = (props) => {
         </div>
     ));
 
-
     return (
         <Fragment>
             <InspectorControls>
                 <PanelBody title="Wildcards">
                     <TextControl
-                        placeholder="Wilcard Section Title"
+                        placeholder="Wildcard Section Title"
                         value={attributes.wildcardSectionTitle}
                         onChange={(value) => setAttributes({ wildcardSectionTitle: value })}
-
+                    />
+                    <TextareaControl
+                        placeholder="Wildcard Subtitle"
+                        value={attributes.wildcardSubtitle}
+                        onChange={(value) => setAttributes({ wildcardSubtitle: value })}
                     />
                     {wildCardFields}
                     <Button isSecondary onClick={handleAddWildcard}>
@@ -99,31 +101,31 @@ const Edit = (props) => {
                     </Button>
                 </PanelBody>
             </InspectorControls>
-                <section {...useBlockProps()} className="wildcard-section">
-                    <div class="container wildcard-container">
-                        <h2>{attributes.wildcardSectionTitle}</h2>
-                            <div className="wildcard-row row">
-                                {attributes.wildcards.map((wildcard, index) => (
-                                    <div key={index} className="col-sm-6">
-                                        <div className="single-wildcard-row">
-                                            {wildcard.cardIcon && (
-                                                <img
-                                                    src={wildcard.cardIcon}
-                                                    alt=""
-                                                    style={{ maxWidth: '80px', marginBottom: '0.5em' }}
-                                                />
-                                            )}
-                                            <h4>{wildcard.cardTitle}</h4>
-                                            <p>{wildcard.cardDescription}</p>
-                                        </div>
-                                    </div>
-                                ))}
+            <section {...useBlockProps()} className="wildcard-section">
+                <div className="container wildcard-container">
+                    <h2>{attributes.wildcardSectionTitle}</h2>
+                    <p>{attributes.wildcardSubtitle}</p>
+                    <div className="wildcard-row row">
+                        {attributes.wildcards.map((wildcard, index) => (
+                            <div key={index} className="col-sm-6">
+                                <div className="single-wildcard-row">
+                                    {wildcard.cardIcon && (
+                                        <img
+                                            src={wildcard.cardIcon}
+                                            alt={wildcard.cardAlt || ''}
+                                            style={{ maxWidth: '80px', marginBottom: '0.5em' }}
+                                        />
+                                    )}
+                                    <h4>{wildcard.cardTitle}</h4>
+                                    <p>{wildcard.cardDescription}</p>
+                                </div>
                             </div>
+                        ))}
                     </div>
-                </section>
+                </div>
+            </section>
         </Fragment>
     );
-
 };
 
 export default Edit;
