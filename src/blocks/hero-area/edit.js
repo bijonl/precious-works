@@ -39,6 +39,17 @@ const Edit = (props) => {
                         value={attributes.buttonText}
                         onChange={(value) => setAttributes({ buttonText: value })}
                     />
+                     <URLInputButton
+                        label="Select Second Link"
+                        url={attributes.buttonTwoURL}
+                        onChange={(url, post) => setAttributes({ buttonTwoURL: url })}
+                        style={{ maxWidth: '100%', width: '100%' }}
+                    />
+                    <TextControl
+                        label="Second Button Text"
+                        value={attributes.buttonTwoText}
+                        onChange={(value) => setAttributes({ buttonTwoText: value })}
+                    />
                 </PanelBody>
             </InspectorControls>
 
@@ -83,6 +94,17 @@ const Edit = (props) => {
                                         rel="noopener noreferrer"
                                     >
                                         {attributes.buttonText || 'Click me'}
+                                    </a>
+                                )}
+
+                                 {attributes.buttonTwoURL && (
+                                    <a
+                                        href={attributes.buttonTwoURL}
+                                        className="btn btn-primary mt-3"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        {attributes.buttonTwoText || 'Click me'}
                                     </a>
                                 )}
                             </div>

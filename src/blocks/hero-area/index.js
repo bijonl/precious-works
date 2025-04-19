@@ -23,6 +23,12 @@ registerBlockType('precious-works/hero-area', {
         buttonText: {
             type: 'string',
         },
+        buttonTwoURL: {
+            type: 'string',
+        },
+        buttonTwoText: {
+            type: 'string',
+        },
     },
 
     edit: (props) => <Edit {...props} />,

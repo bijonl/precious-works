@@ -9,18 +9,39 @@ const Save = (props) => {
             <div className="container homepage-hero-container">
                 <div className="homepage-hero-row row">
                     <div className="col-sm-12 homepage-hero-col text-center">
-                        <h1>{bigHeroText}</h1>
-                        <p>{smallerHeroText}</p>
-                        {attributes.buttonURL && (
-                            <a
-                                href={attributes.buttonURL}
-                                className="btn btn-primary mt-3"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                {attributes.buttonText || 'Click me'}
-                            </a>
-                        )}
+                        <div className="homepage-hero-content-wrapper">
+                            <h1>{bigHeroText}</h1>
+                            <p>{smallerHeroText}</p>
+                            <div className="hero-button-wrapper">
+                                {attributes.buttonURL && (
+                                    <a
+                                    href={attributes.buttonURL}
+                                    className="pw-solid-button"
+                                    aria-label={
+                                        attributes.buttonText
+                                        ? `${attributes.buttonText} (link to ${attributes.buttonURL})`
+                                        : `Go to ${attributes.buttonURL}`
+                                    }
+                                    >
+                                    {attributes.buttonText || 'Click me'}
+                                    </a>
+                                )}
+                                
+                                {attributes.buttonTwoURL && (
+                                    <a
+                                    href={attributes.buttonTwoURL}
+                                    className="outline-pw-button"
+                                    aria-label={
+                                        attributes.buttonTwoText
+                                        ? `${attributes.buttonTwoText} (link to ${attributes.buttonTwoURL})`
+                                        : `Go to ${attributes.buttonTwoURL}`
+                                    }
+                                    >
+                                    {attributes.buttonTwoText || 'Click me'}
+                                    </a>
+                                )}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
