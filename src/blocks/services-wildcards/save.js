@@ -4,7 +4,7 @@ const Save = ({ attributes }) => {
     return (
         <section {...useBlockProps.save()} className="wildcard-section">
             <div className="wildcard-container container">
-                <div className="wildcard-title-row row">
+                <div className="wildcard-title-row title-row row">
                     <div className="col-sm-6 title-col">
                         {attributes.wildcardSectionTitle && (
                             <h2>{attributes.wildcardSectionTitle}</h2>

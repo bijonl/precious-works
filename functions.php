@@ -115,7 +115,16 @@ function pw_render_staff_block( $attributes ) {
     <?php     if ( ! empty( $staff_ids ) ) { ?>
     <section class="staff-block-section">
         <div class="staff-block-container container">
-            <div class="staff-block-row row row-cols-3">
+              <div class="testimonial-title-row title-row row">
+                <div class="col-sm-6 title-col">
+                    <h2>Meet the Fur-midable Team</h2>
+                    <p>
+                        They may nap on the job, but their impact is anything but lazy.
+                        Workplace wellness starts with a tail wag and a purr.
+                    </p>
+                </div>
+            </div>
+            <div class="staff-block-row row">
                 <?php foreach ( $staff_ids as $staff_id ) { 
                     // Fetch the staff member post
                     $staff_bio = get_post_field( 'post_content', $staff_id );
@@ -128,7 +137,7 @@ function pw_render_staff_block( $attributes ) {
                         // Output staff info (can be changed as needed)
                         ?>
                         
-                        <div class="staff-member-col col" style="background-image:url(<?php echo $staff_image_url ?>);">
+                        <div class="staff-member-col col-sm-4 mx-auto" style="background-image:url(<?php echo $staff_image_url ?>);">
                             <div class="overlay pet-overlay"></div>
                             <div class="staff-position-name">
                                 <h6><?php echo $staff_name ?></h6>
@@ -166,11 +175,27 @@ add_action( 'init', 'pw_register_testimonials_block' );
 
 function pw_render_testimonials_block( $attributes ) {
     $testimonial_ids = isset( $attributes['testimonials'] ) ? $attributes['testimonials'] : [];
-    
+
     ob_start();
     ?>
     <section class="testimonial-section">
         <div class="testimonial-container container">
+            <div class="testimonial-title-row title-row row">
+                <div class="col-sm-6 title-col">
+                    <h2>Reviews: Built on Trust. Proven by Results.</h2>
+                    <p>Precious Works and Bijon's approach isn't just about getting the 
+                        job done—it's 
+                        about building lasting trust, delivering quality work, and 
+                        continuously exceeding expectations. These reviews highlight the 
+                        impact he's had across a range of projects, roles, and teams.
+                    </p>
+                </div>
+            </div>
+
+
+
+
+
             <div class="testimonial-row row">
                 <?php foreach ( $testimonial_ids as $id ) {
                     $title        = get_the_title( $id );

@@ -19,3 +19,16 @@ section {
   right: 0; 
   left: 0; 
 }
+
+.title-row {
+    padding-bottom: 40px; 
+    h2 {
+        margin-bottom: 15px; 
+    }
+    p {
+        font-size: 18px; 
+        font-weight: 600;
+        font-style: italic;
+    }
+
+}
