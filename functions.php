@@ -48,9 +48,9 @@ function theme_enqueue_styles() {
     // Enqueue the main CSS file (compiled SCSS)
     wp_enqueue_style(
         'theme-style', // Handle for the style
-        get_template_directory_uri() . '/build/style.css', // Path to the compiled CSS
+        get_template_directory_uri() . '/assets/css/style.css', // Path to the compiled CSS
         array(), // Dependencies (empty if none)
-        filemtime(get_template_directory() . '/build/style.css'), // Version based on file timestamp (cache busting)
+        filemtime(get_template_directory() . '/assets/css/style.css'), // Version based on file timestamp (cache busting)
         'all' // Media type
     );
 

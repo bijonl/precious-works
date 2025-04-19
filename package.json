@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "build": "wp-scripts build",
-    "start": "wp-scripts start"
+    "start": "wp-scripts start",
+    "scss": "sass assets/scss/main.scss assets/css/style.css --style=compressed",
+    "scss-watch": "sass --watch assets/scss/main.scss:assets/css/style.css --style=compressed"
   },
   "devDependencies": {
     "@wordpress/scripts": "^30.14.0",
