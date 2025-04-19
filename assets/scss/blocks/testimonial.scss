@@ -1,0 +1,27 @@
+.testimonial-section {
+    .testimonial-container {
+        .testimonial-row {
+            .testimonial-col {
+                .testimonial-content-wrapper {
+                    border-radius: 15px; 
+                    border: solid 2px $pw_purple;
+                    padding: 30px;
+                    color: $pw_yellow; 
+                    .testimonial-content-quote {
+                        strong {
+                            color: $pw_pink; 
+                            font-size: 18px; 
+                        }
+                    }
+                    .quote-attribute {
+                        padding-top: 25px; 
+                        color: $pw_yellow; 
+                        font-weight: 600;
+                        text-align: center;
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+}

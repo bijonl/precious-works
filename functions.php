@@ -153,3 +153,50 @@ function pw_render_staff_block( $attributes ) {
 
     return '<section class="staff-section">' . $staff_output . '</section>';
 }
+
+
+
+function pw_register_testimonials_block() {
+    register_block_type( 'precious-works/testimonials', array(
+        'editor_script'   => 'pw-testimonials-block-editor',
+        'render_callback' => 'pw_render_testimonials_block',
+    ) );
+}
+add_action( 'init', 'pw_register_testimonials_block' );
+
+function pw_render_testimonials_block( $attributes ) {
+    $testimonial_ids = isset( $attributes['testimonials'] ) ? $attributes['testimonials'] : [];
+    
+    ob_start();
+    ?>
+    <section class="testimonial-section">
+        <div class="testimonial-container container">
+            <div class="testimonial-row row">
+                <?php foreach ( $testimonial_ids as $id ) {
+                    $title        = get_the_title( $id );
+                    $content      = apply_filters( 'the_content', get_post_field( 'post_content', $id ) );
+                    $quote_attr   = get_post_meta( $id, 'quote_attribute', true );
+                    ?>
+                    <div class="testimonial-col col-sm-6">
+                        <div class="testimonial-content-wrapper">
+                            <div class="testimonial-content-quote">
+                                <?php echo $content; ?>
+                            </div>
+                             <?php if ( $quote_attr ) { ?>
+                             <div class="testimonial-content-attribute">
+                                <p class="quote-attribute"><?php echo esc_html( $quote_attr ); ?></p>
+                            </div>
+                            <?php }; ?>
+                        </div>
+                        
+                    </div>
+                <?php }; ?>
+
+            </div>
+        </div>
+       
+    </section>
+    <?php
+
+    return ob_get_clean();
+}

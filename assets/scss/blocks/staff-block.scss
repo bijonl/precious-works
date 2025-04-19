@@ -6,11 +6,21 @@
                     position: relative;
                     aspect-ratio:1/1;
                     margin-bottom: 10px;
-                    border: solid 2px $pw_purple; 
                     background-size: cover; 
+                    border-left: solid 2px $pw_purple; 
+                    border-bottom: solid 2px $pw_purple; 
+                    border-top: solid 2px $pw_purple;
+
+                    &:last-child, &:nth-child(3) {
+                        border-right: solid 2px $pw_purple;
+                    }
+
+
+
                     .staff-position-name {
                         background: $pw_pink;
                         position: absolute; 
+                        border-bottom: solid 2px $pw_purple; 
                         left: 0;
                         color: $pw_white;
                         right: 0;
@@ -28,7 +38,7 @@
                     }
                     &:hover {
                         .pet-overlay {
-                            opacity: 0.5;
+                            opacity: 0.6;
                         }
                         .staff-member-content {
                             margin-top: 10px;

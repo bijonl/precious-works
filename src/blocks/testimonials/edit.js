@@ -13,14 +13,20 @@ const Edit = (props) => {
     const [testimonialList, setTestimonialList] = useState(null); 
     const [selectedTestimonials, setSelectedTestimonialList] = useState([]); 
 
-    function toggleSelectedQuotes(quoteID) {
-        setSelectedTestimonialList((prevList) => {
-            if(prevList.includes(quoteID)) {
-                return prevList.filter((id) => id !== quoteID); 
-            }
-           return [...prevList, quoteID]; 
-        })
+   function toggleSelectedQuotes(quoteID) {
+        const updatedList = selectedTestimonials.includes(quoteID)
+            ? selectedTestimonials.filter((id) => id !== quoteID)
+            : [...selectedTestimonials, quoteID];
+
+        setSelectedTestimonialList(updatedList);
+        setAttributes({ testimonials: updatedList });
     }
+
+    useEffect(() => {
+        if (attributes.testimonials) {
+            setSelectedTestimonialList(attributes.testimonials);
+        }
+    }, []);
 
     const selectedQuoteDetails = testimonialList ? testimonialList.filter((project) => selectedTestimonials.includes(project.id)) : [];
     
@@ -41,7 +47,6 @@ const Edit = (props) => {
 
     return (
     <>
-    
         <InspectorControls>
             <PanelBody title="Testimonials">
                 <p>All Testimonials</p>
