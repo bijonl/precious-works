@@ -12,6 +12,9 @@ function precious_works_theme_setup() {
     // Add support for featured images
     add_theme_support('post-thumbnails');
 
+    // Add custom image size for pet photos (square 800x800)
+    add_image_size( 'pet_photo', 800, 800, true ); // 'true' for cropping
+
     // Add support for editor styles (optional)
     add_theme_support('editor-styles');
 
@@ -106,22 +109,47 @@ add_action( 'init', 'pw_register_staff_block' );
 function pw_render_staff_block( $attributes ) {
     $staff_ids = isset( $attributes['staffMembers'] ) ? $attributes['staffMembers'] : [];
 
-    $staff_output = '';
+    // Start output buffering
+    ob_start(); ?>
 
-    if ( ! empty( $staff_ids ) ) {
-        foreach ( $staff_ids as $staff_id ) {
-            // Fetch the staff member post
-            $staff_post = get_post( $staff_id );
-            
-            if ( $staff_post ) {
-                // Output staff info (can be changed as needed)
-                $staff_output .= '<div class="staff-member">';
-                $staff_output .= '<h3>' . esc_html( $staff_post->post_title ) . '</h3>';
-                // Example: You could also add more fields such as the staff post content or custom fields here
-                $staff_output .= '</div>';
-            }
-        }
-    }
+    <?php     if ( ! empty( $staff_ids ) ) { ?>
+    <section class="staff-block-section">
+        <div class="staff-block-container container">
+            <div class="staff-block-row row row-cols-3">
+                <?php foreach ( $staff_ids as $staff_id ) { 
+                    // Fetch the staff member post
+                    $staff_bio = get_post_field( 'post_content', $staff_id );
+                    $staff_image =  get_the_post_thumbnail( $staff_id, 'pet_photo', array('class' => 'w-100 h-auto' ));
+                    $staff_image_url = get_the_post_thumbnail_url( $staff_id, 'pet_photo');
+                    $staff_position = get_post_meta( $staff_id, 'staff_position', true );
+                    $staff_name = get_the_title($staff_id); 
+                    
+                    if ( get_post_status( $staff_id ) ) {
+                        // Output staff info (can be changed as needed)
+                        ?>
+                        
+                        <div class="staff-member-col col" style="background-image:url(<?php echo $staff_image_url ?>);">
+                            <div class="overlay pet-overlay"></div>
+                            <div class="staff-position-name">
+                                <h6><?php echo $staff_name ?></h6>
+                                <p><?php echo $staff_position ?></p>
+                            </div>
+                            <div class="staff-member-content d-flex align-items-center justify-content-center h-100">
+                                    <?php echo $staff_bio ?>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                } ?>
+            </div>
+        </div>
+    </section>
+
+    <?php } 
+
+
+    // Get the content from the output buffer and clean it
+    $staff_output = ob_get_clean();
 
     return '<section class="staff-section">' . $staff_output . '</section>';
 }

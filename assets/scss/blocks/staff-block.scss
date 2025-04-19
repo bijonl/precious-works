@@ -1,0 +1,56 @@
+.staff-section {
+    .staff-block-section {
+        .staff-block-container {
+            .staff-block-row {
+                .staff-member-col {
+                    position: relative;
+                    aspect-ratio:1/1;
+                    margin-bottom: 10px;
+                    border: solid 2px $pw_purple; 
+                    background-size: cover; 
+                    .staff-position-name {
+                        background: $pw_pink;
+                        position: absolute; 
+                        left: 0;
+                        color: $pw_white;
+                        right: 0;
+                        left: 0;
+                        z-index: 9999;
+                        right: 0;
+                        padding-left: 12px;
+                        h6 {
+                            color: $pw_white;
+                            margin-bottom: 0; 
+                        }
+                        p {
+                            color: $pw_white;
+                        }
+                    }
+                    &:hover {
+                        .pet-overlay {
+                            opacity: 0.5;
+                        }
+                        .staff-member-content {
+                            margin-top: 10px;
+                            visibility: visible;
+                        }
+                    }
+                    .pet-overlay {
+                        transition: all 0.7s ease-in-out; 
+                        background-color: $pw_pink; 
+                        opacity: 0;
+                    }
+                    .staff-member-content {
+                        visibility: hidden;
+                        padding: 40px;
+                        color: $pw_white; 
+                        z-index: 9999;
+                        position: relative;
+                        flex-direction: column;
+                    }
+                }
+
+            }
+        }
+    }
+}
