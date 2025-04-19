@@ -16,7 +16,7 @@ registerBlockType('precious-works/two-col-image-text', {
         textContent: {
             type: 'string',
             source: 'html',
-            selector: '.text-content',
+            selector: '.text-muted', // matches save.js now
         },
         imageUrl: {
             type: 'string',

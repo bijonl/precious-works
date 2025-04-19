@@ -20,13 +20,12 @@ const Edit = (props) => {
         setAttributes({
             imageUrl: media.url,
             imageId: media.id,
-            imageAlt: media.alt || media.title || '', // Fallback to title or empty string
+            imageAlt: media.alt || media.title || '',
         });
     };
 
     return (
         <>
-            {/* Sidebar Controls */}
             <InspectorControls>
                 <PanelBody title="Custom Settings">
                     <TextControl
@@ -53,7 +52,7 @@ const Edit = (props) => {
                         <BaseControl>
                             <img
                                 src={imageUrl}
-                                alt={imageAlt || ''} // Display alt text from the media
+                                alt={imageAlt || ''}
                                 style={{ width: '100%', height: 'auto' }}
                             />
                             <Button
@@ -68,14 +67,12 @@ const Edit = (props) => {
                 </PanelBody>
             </InspectorControls>
 
-            {/* Main Block Layout */}
             <div {...useBlockProps({ className: 'container my-4' })}>
                 <div className="row">
-                    {/* Text Column */}
                     <div className="col-sm-6 mb-4">
                         <RichText
                             tagName="h2"
-                            className="text-primary mb-3"
+                            className="two-col-heading"
                             value={textHeading}
                             onChange={(value) => setAttributes({ textHeading: value })}
                             placeholder="Enter heading..."
@@ -83,7 +80,7 @@ const Edit = (props) => {
 
                         <RichText
                             tagName="div"
-                            className="text-content text-muted"
+                            className="text-muted" // matches save.js exactly
                             multiline="p"
                             value={textContent}
                             onChange={(value) => setAttributes({ textContent: value })}
@@ -91,13 +88,12 @@ const Edit = (props) => {
                         />
                     </div>
 
-                    {/* Image Column */}
                     <div className="col-sm-6">
                         {imageUrl ? (
                             <div className="d-flex flex-column align-items-start">
                                 <img
                                     src={imageUrl}
-                                    alt={imageAlt || ''} // Use the alt text from the attributes
+                                    alt={imageAlt || ''}
                                     className="img-fluid mb-2"
                                 />
                                 <Button

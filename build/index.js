@@ -1117,7 +1117,7 @@ const Edit = props => {
     setAttributes({
       imageUrl: media.url,
       imageId: media.id,
-      imageAlt: media.alt || media.title || '' // Fallback to title or empty string
+      imageAlt: media.alt || media.title || ''
     });
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
@@ -1149,8 +1149,7 @@ const Edit = props => {
         }), imageUrl && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
             src: imageUrl,
-            alt: imageAlt || '' // Display alt text from the media
-            ,
+            alt: imageAlt || '',
             style: {
               width: '100%',
               height: 'auto'
@@ -1179,7 +1178,7 @@ const Edit = props => {
           className: "col-sm-6 mb-4",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
             tagName: "h2",
-            className: "text-primary mb-3",
+            className: "two-col-heading",
             value: textHeading,
             onChange: value => setAttributes({
               textHeading: value
@@ -1187,7 +1186,8 @@ const Edit = props => {
             placeholder: "Enter heading..."
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
             tagName: "div",
-            className: "text-content text-muted",
+            className: "text-muted" // matches save.js exactly
+            ,
             multiline: "p",
             value: textContent,
             onChange: value => setAttributes({
@@ -1201,8 +1201,7 @@ const Edit = props => {
             className: "d-flex flex-column align-items-start",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
               src: imageUrl,
-              alt: imageAlt || '' // Use the alt text from the attributes
-              ,
+              alt: imageAlt || '',
               className: "img-fluid mb-2"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
               onClick: () => setAttributes({
@@ -1266,7 +1265,7 @@ __webpack_require__.r(__webpack_exports__);
     textContent: {
       type: 'string',
       source: 'html',
-      selector: '.text-content'
+      selector: '.text-muted' // matches save.js now
     },
     imageUrl: {
       type: 'string',
