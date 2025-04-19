@@ -15,9 +15,8 @@ registerBlockType('precious-works/two-col-image-text', {
         },
         textContent: {
             type: 'string',
-            default: 'Text Content Here',
             source: 'html',
-            selector: 'h2',
+            selector: '.text-content',
         },
         imageUrl: {
             type: 'string',
@@ -25,6 +24,10 @@ registerBlockType('precious-works/two-col-image-text', {
         },
         imageId: {
             type: 'number',
+        },
+        imageAlt: {
+            type: 'string',
+            default: '',
         },
     },
 

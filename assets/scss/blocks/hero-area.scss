@@ -1,11 +1,37 @@
 .homepage-hero-section {
+    border-bottom: solid 1px $pw_pink; 
     .homepage-hero-container {
         .homepage-hero-row {
-            height: 50vh; 
+            height: 100vh; 
             align-items: center;
             .homepage-hero-col {
-                
+                .homepage-hero-content-wrapper {
+                    .homepage-hero-content-text {
+                        padding-bottom: 30px; 
+                            h1 {
+                                font-size: 4rem; 
+                                color: $pw_pink; 
+                                margin-bottom: 15px; 
+                            }
+                            p {
+                                width: 75%;
+                                margin: auto;
+                                font-size: 1.2rem;
+                                font-weight: 600;
+                                color: $pw_purple; 
+                            }
+                        }
+                    }
+                    .hero-button-wrapper {
+                        a {
+                            &:first-child {
+                                margin-right: 13px; 
+                            }
+                        }
+
+                    }
+                }
+
             }
         }
     }
-}

@@ -431,13 +431,16 @@ const Save = props => {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         className: "homepage-hero-row row",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: "col-sm-12 homepage-hero-col text-center",
+          className: "col-sm-9 mx-auto homepage-hero-col text-center",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
             className: "homepage-hero-content-wrapper",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
-              children: bigHeroText
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-              children: smallerHeroText
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "homepage-hero-content-text",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
+                children: bigHeroText
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+                children: smallerHeroText
+              })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
               className: "hero-button-wrapper",
               children: [attributes.buttonURL && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
@@ -1077,12 +1080,16 @@ const Edit = props => {
   } = props;
   const {
     imageUrl,
-    imageId
+    imageId,
+    imageAlt,
+    textHeading,
+    textContent
   } = attributes;
   const onSelectImage = media => {
     setAttributes({
       imageUrl: media.url,
-      imageId: media.id
+      imageId: media.id,
+      imageAlt: media.alt || media.title || '' // Fallback to title or empty string
     });
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
@@ -1091,7 +1098,7 @@ const Edit = props => {
         title: "Custom Settings",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
           label: "Text Heading",
-          value: attributes.textHeading,
+          value: textHeading,
           onChange: value => setAttributes({
             textHeading: value
           })
@@ -1114,7 +1121,8 @@ const Edit = props => {
         }), imageUrl && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
             src: imageUrl,
-            alt: "",
+            alt: imageAlt || '' // Display alt text from the media
+            ,
             style: {
               width: '100%',
               height: 'auto'
@@ -1122,7 +1130,8 @@ const Edit = props => {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
             onClick: () => setAttributes({
               imageUrl: '',
-              imageId: undefined
+              imageId: undefined,
+              imageAlt: ''
             }),
             isDestructive: true,
             style: {
@@ -1143,20 +1152,20 @@ const Edit = props => {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
             tagName: "h2",
             className: "text-primary mb-3",
-            value: attributes.textHeading,
+            value: textHeading,
             onChange: value => setAttributes({
               textHeading: value
             }),
             placeholder: "Enter heading..."
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
-            tagName: "p",
-            className: "text-muted",
-            value: attributes.textContent,
+            tagName: "div",
+            className: "text-content text-muted",
+            multiline: "p",
+            value: textContent,
             onChange: value => setAttributes({
               textContent: value
             }),
-            placeholder: "Enter content...",
-            inlineToolbar: true
+            placeholder: "Start typing your content..."
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           className: "col-sm-6",
@@ -1164,12 +1173,14 @@ const Edit = props => {
             className: "d-flex flex-column align-items-start",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
               src: imageUrl,
-              alt: "",
+              alt: imageAlt || '' // Use the alt text from the attributes
+              ,
               className: "img-fluid mb-2"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
               onClick: () => setAttributes({
                 imageUrl: '',
-                imageId: undefined
+                imageId: undefined,
+                imageAlt: ''
               }),
               isDestructive: true,
               children: "Remove Image"
@@ -1226,9 +1237,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     textContent: {
       type: 'string',
-      default: 'Text Content Here',
       source: 'html',
-      selector: 'h2'
+      selector: '.text-content'
     },
     imageUrl: {
       type: 'string',
@@ -1236,6 +1246,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     imageId: {
       type: 'number'
+    },
+    imageAlt: {
+      type: 'string',
+      default: ''
     }
   },
   edit: props => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_edit__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -1271,28 +1285,42 @@ const Save = props => {
   const {
     textHeading,
     textContent,
-    imageUrl
+    imageUrl,
+    imageAlt,
+    imageCaption
   } = attributes;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save(),
-    className: "container",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "row",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        className: "col-sm-6",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
-          children: textHeading
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-          children: textContent
+    className: "two-col-img-text-section",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "two-col-container container",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "two-col-row row align-items-center",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "text-col col-sm-5",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+            className: "two-col-heading",
+            children: textHeading
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
+            tagName: "div",
+            className: "text-muted",
+            value: textContent
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "img-col col-sm-6 ms-auto",
+          children: imageUrl && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("figure", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+              src: imageUrl,
+              alt: imageAlt || "",
+              role: imageAlt ? "presentation" : "",
+              className: "img-fluid",
+              loading: "lazy"
+            }), imageCaption && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("figcaption", {
+              children: imageCaption
+            })]
+          })
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "col-sm-6",
-        children: imageUrl && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-          src: imageUrl,
-          alt: "Block Image",
-          className: "img-fluid"
-        })
-      })]
+      })
     })
   });
 };

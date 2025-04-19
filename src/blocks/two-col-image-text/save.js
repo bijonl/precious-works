@@ -1,21 +1,38 @@
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 const Save = (props) => {
     const { attributes } = props;
-    const { textHeading, textContent, imageUrl } = attributes;
+    const { textHeading, textContent, imageUrl, imageAlt, imageCaption } = attributes;
 
     return (
-        <div {...useBlockProps.save()} className="container">
-            <div className="row">
-                <div className="col-sm-6">
-                    <h2>{textHeading}</h2>
-                    <p>{textContent}</p>
-                </div>
-                <div className="col-sm-6">
-                    {imageUrl && <img src={imageUrl} alt="Block Image" className="img-fluid" />}
+        <section {...useBlockProps.save()} className="two-col-img-text-section">
+            <div className="two-col-container container">
+                <div className="two-col-row row align-items-center">
+                    <div className="text-col col-sm-5">
+                        <h3 className="two-col-heading">{textHeading}</h3>
+                        <RichText.Content
+                            tagName="div"
+                            className="text-muted"
+                            value={textContent}
+                        />
+                    </div>
+                    <div className="img-col col-sm-6 ms-auto">
+                        {imageUrl && (
+                            <figure>
+                                <img
+                                    src={imageUrl}
+                                    alt={imageAlt || ""}
+                                    role={imageAlt ? "presentation" : ""}
+                                    className="img-fluid"
+                                    loading="lazy"
+                                />
+                                {imageCaption && <figcaption>{imageCaption}</figcaption>}
+                            </figure>
+                        )}
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

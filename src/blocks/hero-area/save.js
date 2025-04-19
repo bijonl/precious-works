@@ -8,10 +8,12 @@ const Save = (props) => {
         <section {...useBlockProps.save()} className="homepage-hero-section">
             <div className="container homepage-hero-container">
                 <div className="homepage-hero-row row">
-                    <div className="col-sm-12 homepage-hero-col text-center">
+                    <div className="col-sm-9 mx-auto homepage-hero-col text-center">
                         <div className="homepage-hero-content-wrapper">
-                            <h1>{bigHeroText}</h1>
-                            <p>{smallerHeroText}</p>
+                            <div className="homepage-hero-content-text">
+                                <h1>{bigHeroText}</h1>
+                                <p>{smallerHeroText}</p>
+                            </div>
                             <div className="hero-button-wrapper">
                                 {attributes.buttonURL && (
                                     <a

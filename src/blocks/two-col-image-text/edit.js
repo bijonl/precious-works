@@ -14,12 +14,13 @@ import {
 
 const Edit = (props) => {
     const { attributes, setAttributes } = props;
-    const { imageUrl, imageId } = attributes;
+    const { imageUrl, imageId, imageAlt, textHeading, textContent } = attributes;
 
     const onSelectImage = (media) => {
         setAttributes({
             imageUrl: media.url,
             imageId: media.id,
+            imageAlt: media.alt || media.title || '', // Fallback to title or empty string
         });
     };
 
@@ -30,7 +31,7 @@ const Edit = (props) => {
                 <PanelBody title="Custom Settings">
                     <TextControl
                         label="Text Heading"
-                        value={attributes.textHeading}
+                        value={textHeading}
                         onChange={(value) => setAttributes({ textHeading: value })}
                     />
                 </PanelBody>
@@ -50,9 +51,13 @@ const Edit = (props) => {
 
                     {imageUrl && (
                         <BaseControl>
-                            <img src={imageUrl} alt="" style={{ width: '100%', height: 'auto' }} />
+                            <img
+                                src={imageUrl}
+                                alt={imageAlt || ''} // Display alt text from the media
+                                style={{ width: '100%', height: 'auto' }}
+                            />
                             <Button
-                                onClick={() => setAttributes({ imageUrl: '', imageId: undefined })}
+                                onClick={() => setAttributes({ imageUrl: '', imageId: undefined, imageAlt: '' })}
                                 isDestructive
                                 style={{ marginTop: '5px' }}
                             >
@@ -71,18 +76,18 @@ const Edit = (props) => {
                         <RichText
                             tagName="h2"
                             className="text-primary mb-3"
-                            value={attributes.textHeading}
+                            value={textHeading}
                             onChange={(value) => setAttributes({ textHeading: value })}
                             placeholder="Enter heading..."
                         />
 
                         <RichText
-                            tagName="p"
-                            className="text-muted"
-                            value={attributes.textContent}
+                            tagName="div"
+                            className="text-content text-muted"
+                            multiline="p"
+                            value={textContent}
                             onChange={(value) => setAttributes({ textContent: value })}
-                            placeholder="Enter content..."
-                            inlineToolbar
+                            placeholder="Start typing your content..."
                         />
                     </div>
 
@@ -90,10 +95,14 @@ const Edit = (props) => {
                     <div className="col-sm-6">
                         {imageUrl ? (
                             <div className="d-flex flex-column align-items-start">
-                                <img src={imageUrl} alt="" className="img-fluid mb-2" />
+                                <img
+                                    src={imageUrl}
+                                    alt={imageAlt || ''} // Use the alt text from the attributes
+                                    className="img-fluid mb-2"
+                                />
                                 <Button
                                     onClick={() =>
-                                        setAttributes({ imageUrl: '', imageId: undefined })
+                                        setAttributes({ imageUrl: '', imageId: undefined, imageAlt: '' })
                                     }
                                     isDestructive
                                 >
