@@ -94,3 +94,34 @@ add_action('init', function() {
     $meta = get_post_meta(127, 'quote_attribute', true);
     error_log('Quote attribute: ' . $meta);
 });
+
+function pw_register_staff_block() {
+    register_block_type( 'precious-works/staff-block', array(
+        'editor_script' => 'precious-works-staff-block-editor',
+        'render_callback' => 'pw_render_staff_block',
+    ) );
+}
+add_action( 'init', 'pw_register_staff_block' );
+
+function pw_render_staff_block( $attributes ) {
+    $staff_ids = isset( $attributes['staffMembers'] ) ? $attributes['staffMembers'] : [];
+
+    $staff_output = '';
+
+    if ( ! empty( $staff_ids ) ) {
+        foreach ( $staff_ids as $staff_id ) {
+            // Fetch the staff member post
+            $staff_post = get_post( $staff_id );
+            
+            if ( $staff_post ) {
+                // Output staff info (can be changed as needed)
+                $staff_output .= '<div class="staff-member">';
+                $staff_output .= '<h3>' . esc_html( $staff_post->post_title ) . '</h3>';
+                // Example: You could also add more fields such as the staff post content or custom fields here
+                $staff_output .= '</div>';
+            }
+        }
+    }
+
+    return '<section class="staff-section">' . $staff_output . '</section>';
+}
