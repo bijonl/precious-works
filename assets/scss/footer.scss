@@ -1,0 +1,47 @@
+.site-footer {
+    border-top: solid 2px $pw_pink; 
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+    .footer-container {
+        .back-to-top-row {
+            .back-to-top-col {
+                img {
+                    width: 25px;
+                }
+            }
+
+        }
+
+
+        .footer-content-row {
+            .copyright-col {
+                .small-text {
+                    font-size: 14px;
+                }
+            }
+
+            .logo-col {
+                img {
+                    max-width: 100%;
+                    width: 75px; 
+                    height: auto; 
+                }
+
+            }
+
+            .social-col {
+                .social-wrapper {
+                    .social-icon {
+                        width: 25px;
+                        height: auto; 
+                        margin-left: 30px; 
+                    }
+
+                }
+            }
+
+        }
+     
+    }
+
+}
