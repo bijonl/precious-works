@@ -1,3 +1,6 @@
+<?php $linkedin_url = 'https://www.linkedin.com/in/bijonlb/'; 
+$email_address = 'bijonlb.dev@gmail.com'; ?>
+
 <div class="social-wrapper">
     <a aria-label="new window will open to email precious works" 
         href="mailto:<?php echo $email_address ?>" 

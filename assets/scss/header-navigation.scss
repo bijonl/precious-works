@@ -1,9 +1,10 @@
 .site-header__inner {
     padding-top: 10px; 
-    padding-bottom: 10px; 
+    padding-bottom: 0px; 
     border-bottom: dashed 1px $pw_purple; 
     nav {
         .nav-list {
+            margin-bottom: 10px; 
             li {
                 list-style: none;
                 a {

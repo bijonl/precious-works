@@ -32,3 +32,13 @@ section {
     }
 
 }
+
+.alert-bar {
+  padding: 3px; 
+
+  background-color: $pw_yellow;  
+  p {
+    margin-bottom: 0; 
+    font-weight: bold;
+  }
+}
