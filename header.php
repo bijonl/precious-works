@@ -23,3 +23,12 @@
     <?php include(locate_template('components/navigation/header-navigation.php')); ?>
 <!-- Start of Main Content -->
 <main id="main-content" class="site-main" role="main">
+    <div class="container">
+        <div class="row">
+            <a href="mailto:bijonlb.dev@gmail.com" class="d-flex">
+                <div>
+                    Contact
+                </div>
+            </a>
+        </div>
+    </div>
