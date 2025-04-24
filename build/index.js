@@ -142,10 +142,17 @@ __webpack_require__.r(__webpack_exports__);
   description: 'This will output selected projects onto the page.',
   category: 'precious-works',
   icon: 'columns',
+  supports: {
+    anchor: true
+  },
   attributes: {
     featuredProjects: {
       type: 'array',
       default: []
+    },
+    anchor: {
+      type: 'string',
+      default: '' // Ensure default is set here
     }
   },
   // React editor script is still handled here

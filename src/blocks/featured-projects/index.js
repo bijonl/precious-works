@@ -7,11 +7,18 @@ registerBlockType('precious-works/featured-projects', {
     description: 'This will output selected projects onto the page.',
     category: 'precious-works',
     icon: 'columns',
+    supports: {
+        anchor: true, 
+    },
     
     attributes: {
         featuredProjects: {
             type: 'array',
             default: [],
+        },
+        anchor: {
+            type: 'string',
+            default: '', // Ensure default is set here
         },
     },
 
