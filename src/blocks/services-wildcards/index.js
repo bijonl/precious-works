@@ -7,6 +7,9 @@ registerBlockType('precious-works/services-wildcards', {
     description: 'Wildcard Repeater for Services',
     category: 'precious-works',
     icon: 'columns',
+     supports: {
+        anchor: true, 
+    },
     attributes: {
         wildcardSectionTitle: {
             type: 'string',

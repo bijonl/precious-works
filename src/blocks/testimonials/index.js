@@ -7,11 +7,18 @@ registerBlockType('precious-works/testimonials', {
     description: 'This will output testimonials.',
     category: 'precious-works',
     icon: 'columns',
+     supports: {
+        anchor: true, 
+    },
 
     attributes: {
         testimonials: {
             type: 'array',
             default: [],
+        },
+        anchor: {
+            type: 'string',
+            default: '', // Ensure default is set here
         },
     },
 

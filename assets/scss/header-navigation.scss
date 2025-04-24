@@ -1,0 +1,22 @@
+.site-header__inner {
+    padding-top: 10px; 
+    padding-bottom: 10px; 
+    border-bottom: dashed 1px $pw_purple; 
+    nav {
+        .nav-list {
+            li {
+                list-style: none;
+                a {
+                    font-size: 26px; 
+                    text-decoration: none;
+                }
+            }
+            .nav-logo {
+                img {
+                    height: 70px; 
+                }
+
+            }
+        }
+    }
+}

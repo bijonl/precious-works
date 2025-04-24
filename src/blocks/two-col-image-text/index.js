@@ -7,7 +7,9 @@ registerBlockType('precious-works/two-col-image-text', {
     description: 'A two column block with image and text',
     category: 'precious-works',
     icon: 'columns',
-
+    supports: {
+        anchor: true, 
+    },
     attributes: {
         textHeading: {
             type: 'string',

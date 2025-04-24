@@ -367,6 +367,9 @@ __webpack_require__.r(__webpack_exports__);
   description: 'This will serve as the hero area for the page.',
   category: 'precious-works',
   icon: 'columns',
+  supports: {
+    anchor: true
+  },
   attributes: {
     bigHeroText: {
       type: 'string',
@@ -642,6 +645,9 @@ __webpack_require__.r(__webpack_exports__);
   description: 'Wildcard Repeater for Services',
   category: 'precious-works',
   icon: 'columns',
+  supports: {
+    anchor: true
+  },
   attributes: {
     wildcardSectionTitle: {
       type: 'string',
@@ -878,10 +884,17 @@ __webpack_require__.r(__webpack_exports__);
   description: 'This will output staff members onto the page.',
   category: 'precious-works',
   icon: 'columns',
+  supports: {
+    anchor: true
+  },
   attributes: {
     staffMembers: {
       type: 'array',
       default: []
+    },
+    anchor: {
+      type: 'string',
+      default: '' // Ensure default is set here
     }
   },
   edit: props => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_edit__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -1024,10 +1037,17 @@ __webpack_require__.r(__webpack_exports__);
   description: 'This will output testimonials.',
   category: 'precious-works',
   icon: 'columns',
+  supports: {
+    anchor: true
+  },
   attributes: {
     testimonials: {
       type: 'array',
       default: []
+    },
+    anchor: {
+      type: 'string',
+      default: '' // Ensure default is set here
     }
   },
   edit: props => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_edit__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -1235,6 +1255,9 @@ __webpack_require__.r(__webpack_exports__);
   description: 'A two column block with image and text',
   category: 'precious-works',
   icon: 'columns',
+  supports: {
+    anchor: true
+  },
   attributes: {
     textHeading: {
       type: 'string',

@@ -7,7 +7,9 @@ registerBlockType('precious-works/hero-area', {
     description: 'This will serve as the hero area for the page.',
     category: 'precious-works',
     icon: 'columns',
-
+     supports: {
+        anchor: true, 
+    },
     attributes: {
         bigHeroText: {
             type: 'string',
