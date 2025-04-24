@@ -102,18 +102,22 @@ function pw_register_staff_block() {
     register_block_type( 'precious-works/staff-block', array(
         'editor_script' => 'precious-works-staff-block-editor',
         'render_callback' => 'pw_render_staff_block',
+        'supports'        => array(
+            'anchor' => true, // Ensure anchor is supported in the block registration
+        ),   
     ) );
 }
 add_action( 'init', 'pw_register_staff_block' );
 
 function pw_render_staff_block( $attributes ) {
+    $anchor_id = isset( $attributes['anchor'] ) ? esc_attr( $attributes['anchor'] ) : '';
     $staff_ids = isset( $attributes['staffMembers'] ) ? $attributes['staffMembers'] : [];
 
     // Start output buffering
     ob_start(); ?>
 
     <?php     if ( ! empty( $staff_ids ) ) { ?>
-    <section class="staff-block-section">
+    <section class="staff-block-section" id="<?php echo $anchor_id ?>">
         <div class="staff-block-container container">
               <div class="testimonial-title-row title-row row">
                 <div class="col-sm-6 title-col">
@@ -160,7 +164,7 @@ function pw_render_staff_block( $attributes ) {
     // Get the content from the output buffer and clean it
     $staff_output = ob_get_clean();
 
-    return '<section class="staff-section">' . $staff_output . '</section>';
+    return $staff_output;
 }
 
 
@@ -169,16 +173,20 @@ function pw_register_testimonials_block() {
     register_block_type( 'precious-works/testimonials', array(
         'editor_script'   => 'pw-testimonials-block-editor',
         'render_callback' => 'pw_render_testimonials_block',
+        'supports'        => array(
+            'anchor' => true, // Ensure anchor is supported in the block registration
+        ),  
     ) );
 }
 add_action( 'init', 'pw_register_testimonials_block' );
 
 function pw_render_testimonials_block( $attributes ) {
+    $anchor_id = isset( $attributes['anchor'] ) ? esc_attr( $attributes['anchor'] ) : '';
     $testimonial_ids = isset( $attributes['testimonials'] ) ? $attributes['testimonials'] : [];
 
     ob_start();
     ?>
-    <section class="testimonial-section">
+    <section class="testimonial-section" id="<?php echo $anchor_id ?>">
         <div class="testimonial-container container">
             <div class="testimonial-title-row title-row row">
                 <div class="col-sm-6 title-col">
