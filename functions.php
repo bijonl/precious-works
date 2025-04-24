@@ -5,6 +5,31 @@ require get_template_directory() . '/custom-post-types/testimonials.php';
 require get_template_directory() . '/custom-post-types/projects.php';
 
 
+$block_render_paths = [
+    'src/blocks/render-blocks/staff-block.php',
+    'src/blocks/render-blocks/testimonial-block.php',
+    'src/blocks/render-blocks/featured-work-block.php',
+];
+
+foreach ( $block_render_paths as $path ) {
+    $full_path = get_template_directory() . '/' . $path;
+    error_log('Trying to require: ' . $full_path);
+    if ( file_exists( $full_path ) ) {
+        require_once $full_path;
+    } else {
+        error_log('File not found: ' . $full_path);
+    }
+}
+
+$register_block_dir = get_template_directory() . '/src/blocks/register-blocks/';
+$register_block_files = glob( $register_block_dir . '*.php' );
+
+foreach ( $register_block_files as $file ) {
+    require_once $file;
+}
+
+
+
 function precious_works_theme_setup() {
     // Add support for dynamic <title> tag
     add_theme_support('title-tag');
@@ -93,143 +118,5 @@ function prefix_disable_gutenberg($current_status, $post_type) {
     return $current_status;
 }
 
-add_action('init', function() {
-    $meta = get_post_meta(127, 'quote_attribute', true);
-    error_log('Quote attribute: ' . $meta);
-});
-
-function pw_register_staff_block() {
-    register_block_type( 'precious-works/staff-block', array(
-        'editor_script' => 'precious-works-staff-block-editor',
-        'render_callback' => 'pw_render_staff_block',
-        'supports'        => array(
-            'anchor' => true, // Ensure anchor is supported in the block registration
-        ),   
-    ) );
-}
-add_action( 'init', 'pw_register_staff_block' );
-
-function pw_render_staff_block( $attributes ) {
-    $anchor_id = isset( $attributes['anchor'] ) ? esc_attr( $attributes['anchor'] ) : '';
-    $staff_ids = isset( $attributes['staffMembers'] ) ? $attributes['staffMembers'] : [];
-
-    // Start output buffering
-    ob_start(); ?>
-
-    <?php     if ( ! empty( $staff_ids ) ) { ?>
-    <section class="staff-block-section" id="<?php echo $anchor_id ?>">
-        <div class="staff-block-container container">
-              <div class="testimonial-title-row title-row row">
-                <div class="col-sm-6 title-col">
-                    <h2>Meet the Fur-midable Team</h2>
-                    <p>
-                        They may nap on the job, but their impact is anything but lazy.
-                        Workplace wellness starts with a tail wag and a purr.
-                    </p>
-                </div>
-            </div>
-            <div class="staff-block-row row">
-                <?php foreach ( $staff_ids as $staff_id ) { 
-                    // Fetch the staff member post
-                    $staff_bio = get_post_field( 'post_content', $staff_id );
-                    $staff_image =  get_the_post_thumbnail( $staff_id, 'pet_photo', array('class' => 'w-100 h-auto' ));
-                    $staff_image_url = get_the_post_thumbnail_url( $staff_id, 'pet_photo');
-                    $staff_position = get_post_meta( $staff_id, 'staff_position', true );
-                    $staff_name = get_the_title($staff_id); 
-                    
-                    if ( get_post_status( $staff_id ) ) {
-                        // Output staff info (can be changed as needed)
-                        ?>
-                        
-                        <div class="staff-member-col col-sm-4 mx-auto" style="background-image:url(<?php echo $staff_image_url ?>);">
-                            <div class="overlay pet-overlay"></div>
-                            <div class="staff-position-name">
-                                <h6><?php echo $staff_name ?></h6>
-                                <p><?php echo $staff_position ?></p>
-                            </div>
-                            <div class="staff-member-content d-flex align-items-center justify-content-center h-100">
-                                    <?php echo $staff_bio ?>
-                            </div>
-                        </div>
-                        <?php
-                    }
-                } ?>
-            </div>
-        </div>
-    </section>
-
-    <?php } 
 
 
-    // Get the content from the output buffer and clean it
-    $staff_output = ob_get_clean();
-
-    return $staff_output;
-}
-
-
-
-function pw_register_testimonials_block() {
-    register_block_type( 'precious-works/testimonials', array(
-        'editor_script'   => 'pw-testimonials-block-editor',
-        'render_callback' => 'pw_render_testimonials_block',
-        'supports'        => array(
-            'anchor' => true, // Ensure anchor is supported in the block registration
-        ),  
-    ) );
-}
-add_action( 'init', 'pw_register_testimonials_block' );
-
-function pw_render_testimonials_block( $attributes ) {
-    $anchor_id = isset( $attributes['anchor'] ) ? esc_attr( $attributes['anchor'] ) : '';
-    $testimonial_ids = isset( $attributes['testimonials'] ) ? $attributes['testimonials'] : [];
-
-    ob_start();
-    ?>
-    <section class="testimonial-section" id="<?php echo $anchor_id ?>">
-        <div class="testimonial-container container">
-            <div class="testimonial-title-row title-row row">
-                <div class="col-sm-6 title-col">
-                    <h2>Reviews: Built on Trust. Proven by Results.</h2>
-                    <p>Precious Works and Bijon's approach isn't just about getting the 
-                        job done—it's 
-                        about building lasting trust, delivering quality work, and 
-                        continuously exceeding expectations. These reviews highlight the 
-                        impact he's had across a range of projects, roles, and teams.
-                    </p>
-                </div>
-            </div>
-
-
-
-
-
-            <div class="testimonial-row row">
-                <?php foreach ( $testimonial_ids as $id ) {
-                    $title        = get_the_title( $id );
-                    $content      = apply_filters( 'the_content', get_post_field( 'post_content', $id ) );
-                    $quote_attr   = get_post_meta( $id, 'quote_attribute', true );
-                    ?>
-                    <div class="testimonial-col col-sm-6">
-                        <div class="testimonial-content-wrapper">
-                            <div class="testimonial-content-quote">
-                                <?php echo $content; ?>
-                            </div>
-                             <?php if ( $quote_attr ) { ?>
-                             <div class="testimonial-content-attribute">
-                                <p class="quote-attribute"><?php echo esc_html( $quote_attr ); ?></p>
-                            </div>
-                            <?php }; ?>
-                        </div>
-                        
-                    </div>
-                <?php }; ?>
-
-            </div>
-        </div>
-       
-    </section>
-    <?php
-
-    return ob_get_clean();
-}
