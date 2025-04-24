@@ -17,6 +17,11 @@
                     .card-description {
                         width: 90%; 
                     }
+                    &:focus {
+                        outline: 3px solid $pw_pink;
+                        outline-offset: 6px;
+                        border-radius: 12px;
+                    }
                 }
             }
         }

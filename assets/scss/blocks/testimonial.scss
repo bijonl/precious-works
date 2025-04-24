@@ -7,6 +7,11 @@
                     border: solid 2px $pw_purple;
                     padding: 30px;
                     color: $pw_yellow; 
+                    &:focus {
+                        outline: 3px solid $pw_pink;
+                        outline-offset: 4px;
+                        border-radius: 8px;
+                        }
                     .testimonial-content-quote {
                         strong {
                             color: $pw_pink; 

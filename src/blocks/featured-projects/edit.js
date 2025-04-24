@@ -10,35 +10,33 @@ import {
 
 const Edit = (props) => {
     const { attributes, setAttributes } = props;
-    const [ projectList, setProjectList ] = useState( null );
-    const [selectedProjects, setSelectedProjects] = useState([]);
+    const { featuredProjects = [] } = attributes;
 
-    function toggleSelectedProjects(projectID) {
-        setSelectedProjects((prevSelected) => { 
-            if(selectedProjects.includes(projectID)) {
-                return prevSelected.filter((id) => id !== projectID); 
-            } 
-            return [...prevSelected, projectID];
-        }); 
-        
-    }; 
+    const [projectList, setProjectList] = useState(null);
 
-    // Filter out the selected staff titles
-    const selectedProjectDetails = projectList ? projectList.filter((project) => selectedProjects.includes(project.id)) : [];
+    const toggleSelectedProjects = (projectID) => {
+        const newSelected = featuredProjects.includes(projectID)
+            ? featuredProjects.filter((id) => id !== projectID)
+            : [...featuredProjects, projectID];
 
-    useEffect( () => {
-        apiFetch( { path: '/wp/v2/projects' } ).then(
-            ( result ) => {
-                setProjectList( result );
-            },
-            ( error ) => {
-                console.error('Error fetching staff data:', error);
-                setProjectList([]); // Or set some error state to display an error message
+        setAttributes({ featuredProjects: newSelected });
+    };
+
+    const selectedProjectDetails = projectList
+        ? projectList.filter((project) => featuredProjects.includes(project.id))
+        : [];
+
+    useEffect(() => {
+        apiFetch({ path: '/wp/v2/projects' }).then(
+            (result) => setProjectList(result),
+            (error) => {
+                console.error('Error fetching project data:', error);
+                setProjectList([]);
             }
         );
-    }, [] ); 
+    }, []);
 
-   return (
+    return (
         <>
             <InspectorControls>
                 <PanelBody title="Projects" initialOpen={true}>
@@ -51,7 +49,7 @@ const Edit = (props) => {
                                 style={{
                                     display: 'block',
                                     marginBottom: '4px',
-                                    backgroundColor: selectedProjects.includes(project.id)
+                                    backgroundColor: featuredProjects.includes(project.id)
                                         ? 'lightgreen'
                                         : 'transparent',
                                     border: '1px solid #ccc',
@@ -93,30 +91,23 @@ const Edit = (props) => {
             </InspectorControls>
 
             <section className="featured-projects-section" {...useBlockProps()}>
-                <div class="featured-projects-container container">
-                    <div class="featured-projects-row row">
-                    {selectedProjectDetails.length > 0 ? (
-                        selectedProjectDetails.map((project) => (
-                        
-                            <div class="col-sm-6 single-project">
-                                <h4>
-                                    {project.title.rendered}
-                                </h4>
-                                <div dangerouslySetInnerHTML={{ __html: project.content.rendered }} />
-                            </div>
-                     
-                        ))
-                    ) : (
-                        <p>None selected...</p>
-                    )}
+                <div className="featured-projects-container container">
+                    <div className="featured-projects-row row">
+                        {selectedProjectDetails.length > 0 ? (
+                            selectedProjectDetails.map((project) => (
+                                <div key={project.id} className="col-sm-6 single-project">
+                                    <h4>{project.title.rendered}</h4>
+                                    <div dangerouslySetInnerHTML={{ __html: project.content.rendered }} />
+                                </div>
+                            ))
+                        ) : (
+                            <p>None selected...</p>
+                        )}
                     </div>
                 </div>
             </section>
-            
-        
         </>
     );
-
-}
+};
 
 export default Edit;

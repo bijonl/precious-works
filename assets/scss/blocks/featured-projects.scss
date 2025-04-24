@@ -1,0 +1,70 @@
+.single-project {
+  margin-bottom: 2px;
+  background-color: $pw_purple;
+  border-radius: 15px;
+  border: solid 3px $pw_white;
+  transition: border-color 0.3s ease-in-out;
+
+  // Hover and focus styling
+  &:hover,
+  &:focus-within {
+    border-color: $pw_pink;
+
+    .project-content {
+      .project-logo {
+        height: auto;
+        padding-bottom: 15px;
+
+        img {
+          height: 150px;
+        }
+      }
+    }
+  }
+
+  .project-content {
+    padding: 15px;
+    color: $pw_white;
+
+    .project-logo {
+      height: 0;
+      text-align: center;
+
+      img {
+        transition: height 0.25s ease-in-out;
+        height: 0;
+        width: auto;
+        scale: 2.0;
+
+        @media (prefers-reduced-motion: reduce) {
+          transition: none !important;
+        }
+      }
+    }
+
+    .project-title {
+      padding-bottom: 15px;
+
+      h5 {
+        color: $pw_white;
+        margin-bottom: 0;
+      }
+    }
+
+    .project-description {
+      padding-bottom: 15px;
+    }
+
+    .project-button {
+      padding-top: 15px;
+
+      a {
+        &:focus {
+          outline: 3px solid $pw_pink;
+          outline-offset: 3px;
+          border-radius: 6px;
+        }
+      }
+    }
+  }
+}

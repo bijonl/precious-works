@@ -32,28 +32,23 @@ const Edit = props => {
     attributes,
     setAttributes
   } = props;
+  const {
+    featuredProjects = []
+  } = attributes;
   const [projectList, setProjectList] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
-  const [selectedProjects, setSelectedProjects] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
-  function toggleSelectedProjects(projectID) {
-    setSelectedProjects(prevSelected => {
-      if (selectedProjects.includes(projectID)) {
-        return prevSelected.filter(id => id !== projectID);
-      }
-      return [...prevSelected, projectID];
+  const toggleSelectedProjects = projectID => {
+    const newSelected = featuredProjects.includes(projectID) ? featuredProjects.filter(id => id !== projectID) : [...featuredProjects, projectID];
+    setAttributes({
+      featuredProjects: newSelected
     });
-  }
-  ;
-
-  // Filter out the selected staff titles
-  const selectedProjectDetails = projectList ? projectList.filter(project => selectedProjects.includes(project.id)) : [];
+  };
+  const selectedProjectDetails = projectList ? projectList.filter(project => featuredProjects.includes(project.id)) : [];
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
       path: '/wp/v2/projects'
-    }).then(result => {
-      setProjectList(result);
-    }, error => {
-      console.error('Error fetching staff data:', error);
-      setProjectList([]); // Or set some error state to display an error message
+    }).then(result => setProjectList(result), error => {
+      console.error('Error fetching project data:', error);
+      setProjectList([]);
     });
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
@@ -70,7 +65,7 @@ const Edit = props => {
           style: {
             display: 'block',
             marginBottom: '4px',
-            backgroundColor: selectedProjects.includes(project.id) ? 'lightgreen' : 'transparent',
+            backgroundColor: featuredProjects.includes(project.id) ? 'lightgreen' : 'transparent',
             border: '1px solid #ccc',
             padding: '4px',
             cursor: 'pointer'
@@ -101,11 +96,11 @@ const Edit = props => {
       className: "featured-projects-section",
       ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(),
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        class: "featured-projects-container container",
+        className: "featured-projects-container container",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          class: "featured-projects-row row",
+          className: "featured-projects-row row",
           children: selectedProjectDetails.length > 0 ? selectedProjectDetails.map(project => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            class: "col-sm-6 single-project",
+            className: "col-sm-6 single-project",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
               children: project.title.rendered
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
@@ -113,7 +108,7 @@ const Edit = props => {
                 __html: project.content.rendered
               }
             })]
-          })) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+          }, project.id)) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
             children: "None selected..."
           })
         })
@@ -714,8 +709,10 @@ const Save = ({
         className: "wildcard-row row g-5",
         children: attributes.wildcards.map((wildcard, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
           className: `wildcard-col col-sm-6 ${index % 2 === 0 ? 'me-auto' : 'ms-auto'}`,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("article", {
             className: "wildcard-card",
+            tabIndex: "0",
+            "aria-label": `Card ${index + 1}: ${wildcard.cardTitle}`,
             children: [wildcard.cardIcon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
               src: wildcard.cardIcon,
               alt: wildcard.cardAlt || ''

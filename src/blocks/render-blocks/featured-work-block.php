@@ -1,5 +1,4 @@
 <?php function pw_render_featured_work_block( $attributes ) {
-    error_log('Rendering staff block');
     $anchor_id = isset( $attributes['anchor'] ) ? esc_attr( $attributes['anchor'] ) : '';
     $project_ids = isset( $attributes['featuredProjects'] ) ? $attributes['featuredProjects'] : [];
 
@@ -8,37 +7,54 @@
 
     <section class="featured-work-section" id="<?php echo $anchor_id ?>">
         <div class="feature-work-container container">
-            <div class="featured-work-title-row title-row row">
-                <div class="col-sm-6 title-col">
-                    <h2>Reviews: Built on Trust. Proven by Results.</h2>
-                    <p>Precious Works and Bijon's approach isn't just about getting the 
-                        job done—it's 
-                        about building lasting trust, delivering quality work, and 
-                        continuously exceeding expectations. These reviews highlight the 
-                        impact he's had across a range of projects, roles, and teams.
+            <div class="featured-work-title-row title-row row g-3">
+                <div class="col-sm-7 title-col">
+                    <h2>Featured Projects - More Coming Soon!</h2>
+                    <p> I focus on delivering polished, straightforward results that fit 
+                        the client's needs, from design to functionality. With experience 
+                        across a range of industries—law, media, nonprofits, and the arts—I've 
+                        tailored my approach to each unique need. Check out a few of my recent 
+                        projects below.
                     </p>
                 </div>
             </div>
             <div class="featured-work-row row">
-
-            <?php print_r($project_ids) ?>
                 <?php if($project_ids) {
-                    foreach($project_ids as $project) {
-                        echo $project; 
-                    }
-                } else {
-                    echo 'no'; 
-                }?>
-
-
-
-
-
+                    foreach($project_ids as $project) { ?>
+                    <?php $title = get_the_title($project);  
+                    $image = get_the_post_thumbnail($project, ); 
+                    $description = get_the_excerpt($project); 
+                    $url = get_post_meta($project, 'project_url', true);                     
+                    ?>
+                    
+                    <div class="col-sm-6 mx-auto single-project" role="region" aria-label="Project: <?php echo esc_attr($title) ?>">
+                        <div class="project-content">
+                            <div class="project-logo">
+                                <?php echo $image ?>
+                            </div>
+                            <div class="project-title">
+                                <h5><?php echo esc_attr($title) ?></h5>
+                            </div>
+                            <div class="project-description">
+                                <?php echo $description ?>
+                            </div>
+                            <div class="project-button">
+                                <a href="<?php echo $url?>" 
+                                target ="_blank" 
+                                rel="noopener noreferrer"
+                                class="pw-solid-button"
+                                aria-label="visit <?php echo $url ?>"
+                                title="visit <?php echo $url ?>"
+                                > 
+                                    Visit <?php echo esc_attr($title) ?>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <?php }
+                } ?>
             </div>
-
-
     </section>
-
 <?php 
 
     return ob_get_clean();

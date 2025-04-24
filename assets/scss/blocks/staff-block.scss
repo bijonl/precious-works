@@ -1,64 +1,92 @@
 .staff-block-section {
-    .staff-block-container {
-        .staff-block-row {
-            .staff-member-col {
-                position: relative;
-                aspect-ratio:1/1;
-                margin-bottom: 10px;
-                background-size: cover; 
-                border-left: solid 2px $pw_purple; 
-                border-bottom: solid 2px $pw_purple; 
-                border-top: solid 2px $pw_purple;
+  .staff-block-container {
+    .staff-block-row {
+      .staff-member-col {
+        position: relative;
+        aspect-ratio: 1 / 1;
+        margin-bottom: 10px;
+        background-size: cover;
+        border-left: solid 2px $pw_purple;
+        border-bottom: solid 2px $pw_purple;
+        border-top: solid 2px $pw_purple;
+        transition: all 0.3s ease-in-out;
+        outline: none;
 
-                &:last-child, &:nth-child(3) {
-                    border-right: solid 2px $pw_purple;
-                }
-
-
-
-                .staff-position-name {
-                    background: $pw_pink;
-                    position: absolute; 
-                    border-bottom: solid 2px $pw_purple; 
-                    left: 0;
-                    color: $pw_white;
-                    right: 0;
-                    left: 0;
-                    z-index: 9999;
-                    right: 0;
-                    padding-left: 12px;
-                    h6 {
-                        color: $pw_white;
-                        margin-bottom: 0; 
-                    }
-                    p {
-                        color: $pw_white;
-                    }
-                }
-                &:hover {
-                    .pet-overlay {
-                        opacity: 0.6;
-                    }
-                    .staff-member-content {
-                        margin-top: 10px;
-                        visibility: visible;
-                    }
-                }
-                .pet-overlay {
-                    transition: all 0.7s ease-in-out; 
-                    background-color: $pw_pink; 
-                    opacity: 0;
-                }
-                .staff-member-content {
-                    visibility: hidden;
-                    padding: 40px;
-                    color: $pw_white; 
-                    z-index: 9999;
-                    position: relative;
-                    flex-direction: column;
-                }
-            }
-
+        &:last-child,
+        &:nth-child(3) {
+          border-right: solid 2px $pw_purple;
         }
+
+        // Shared interaction for hover and keyboard focus
+        &:hover,
+        &:focus-within {
+          .pet-overlay {
+            opacity: 0.6;
+          }
+
+          .staff-member-content {
+            visibility: visible;
+            margin-top: 10px;
+          }
+        }
+
+        // Bonus Tip: Make card focusable and visually distinct
+        &:focus {
+          outline: 3px solid $pw_pink;
+          outline-offset: 4px;
+          border-radius: 12px;
+        }
+
+        .pet-overlay {
+          transition: opacity 0.7s ease-in-out;
+          background-color: $pw_pink;
+          opacity: 0;
+
+          @media (prefers-reduced-motion: reduce) {
+            transition: none !important;
+          }
+        }
+
+        .staff-member-content {
+          visibility: hidden;
+          padding: 40px;
+          color: $pw_white;
+          z-index: 9999;
+          position: relative;
+          flex-direction: column;
+          transition: visibility 0.25s ease-in-out, margin-top 0.25s ease-in-out;
+
+          @media (prefers-reduced-motion: reduce) {
+            transition: none !important;
+          }
+        }
+
+        .staff-position-name {
+          background: $pw_pink;
+          position: absolute;
+          border-bottom: solid 2px $pw_purple;
+          left: 0;
+          right: 0;
+          padding-left: 12px;
+          z-index: 9999;
+
+          h6,
+          p {
+            color: $pw_white;
+            margin-bottom: 0;
+          }
+        }
+
+        // Accessible focus states for internal focusable elements
+        a,
+        button {
+          &:focus {
+            outline: 3px solid $pw_pink;
+            outline-offset: 3px;
+            border-radius: 6px;
+          }
+        }
+      }
     }
+  }
 }

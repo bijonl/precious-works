@@ -1,5 +1,5 @@
 <?php function pw_register_featured_work_block() {
-    register_block_type( 'precious-works/staff-block', array(
+    register_block_type( 'precious-works/featured-projects', array(
         'editor_script' => 'pw-featured-work-block-editor',
         'render_callback' => 'pw_render_featured_work_block',
         'supports'        => array(
