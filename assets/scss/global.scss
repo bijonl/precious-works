@@ -10,6 +10,12 @@ body {
 section {
   padding-top: 60px; 
   padding-bottom: 60px; 
+   @media (max-width: 768px) {
+    padding-top: 30px; 
+    padding-bottom: 30px; 
+  }
+            
+  
 }
 
 .overlay {
@@ -41,4 +47,22 @@ section {
     margin-bottom: 0; 
     font-weight: bold;
   }
+}
+
+// Example: Custom max-width for Bootstrap containers
+.container,
+.container-fluid {
+  @media (min-width: 1200px) {
+    max-width: 1440px; // or whatever width you want
+  }
+
+  @media (min-width: 1400px) {
+    max-width: 1600px; // optional larger max-width for xxl screens
+  }
+
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
 }

@@ -3,7 +3,7 @@
     padding-bottom: 0px; 
     border-bottom: dashed 1px $pw_purple; 
     nav {
-        .nav-list {
+        .nav-list, .nav-list-desktop {
             margin-bottom: 10px; 
             li {
                 list-style: none;
@@ -12,12 +12,69 @@
                     text-decoration: none;
                 }
             }
-            .nav-logo {
-                img {
-                    height: 70px; 
-                }
-
-            }
+           
         }
+        .nav-list-desktop {
+            justify-content: space-evenly;
+        }
+        .nav-logo {
+            justify-content: space-between;
+            img {
+                height: 70px; 
+            }
+            
+
+        }
+        .mobile-nav {
+            display: none; 
+            padding-bottom: 15px;
+            .menu-toggle {
+                font-size: 65px;
+                background: transparent; 
+                color: $pw_purple; 
+                border: none; 
+                display: none
+            }
+             @media (max-width: 768px) {
+                display: block; 
+            }
+            
+            justify-content: space-between;
+            .nav-logo-mobile {
+                display: none; 
+                @media (max-width: 768px) {
+                    display: block; 
+                }
+                img {
+                        @media (max-width: 768px) {
+                        display: block; 
+                        height: 100px; 
+                    }
+                }
+            }
+
+        }
+         
     }
+}
+
+
+// Mobile Nav Logic
+#primary-menu {
+  @media (max-width: 768px) {
+    transition: all 0.3s ease-in-out;
+    display: none;
+    flex-direction: column;
+    gap: 1rem; // optional spacing
+    top: 100%; // just below nav
+    left: 0;
+    width: 100%;
+    background: $pw_white;
+    padding: 1rem;
+    z-index: 1000;
+
+    &.open {
+      display: flex;
+    }
+  }
 }

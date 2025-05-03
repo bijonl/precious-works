@@ -89,6 +89,9 @@ function theme_enqueue_styles() {
         false 
     );
 
+    // Your new global JS
+    wp_enqueue_script( 'precious-global', get_template_directory_uri() . '/assets/js/global.js', [], '1.0', true );
+
 }
 add_action('wp_enqueue_scripts', 'theme_enqueue_styles');
 

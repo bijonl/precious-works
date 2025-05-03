@@ -5,7 +5,7 @@ $copyright_text = '&copy '.get_the_date('Y').' Precious Works'; ?>
     <footer class="site-footer mt-auto">
         <div class="container footer-container text-center">
             <div class="back-to-top-row row">
-                <div class="col back-to-top-col text-end">
+                <div class="col back-to-top-col text-center text-md-end">
                     <a aria-label="go to top of page" 
                         href="#" 
                         title="button to go back to top">
@@ -19,7 +19,7 @@ $copyright_text = '&copy '.get_the_date('Y').' Precious Works'; ?>
                 </div>
             </div>
             <div class="row footer-content-row align-items-center">
-                <div class="col-sm-4 copyright-col text-start">
+                <div class="col-sm-4 copyright-col text-center text-md-start">
                     <p  class="small-text">
                         <?php echo $copyright_text ?>
                     </p>
@@ -32,7 +32,7 @@ $copyright_text = '&copy '.get_the_date('Y').' Precious Works'; ?>
                         title="email-icon"
                     />
                 </div>
-                <div class="col-sm-4 social-col text-end">
+                <div class="col-sm-4 social-col text-center text-md-end">
                     <?php include(locate_template('components/footer/social-icons.php')); ?>
                 </div>
             </div>

@@ -2,10 +2,11 @@
 // Font family fallback
 $font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 $font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$heading-color: $pw_purple; 
 
 // Headings base styles
 .h1, h1 {
-  color: $pw_pink; 
+  color: $heading-color; 
   font-family: $font-heading;
   font-size: 3rem;        // 48px
   line-height: 1.2;
@@ -13,7 +14,7 @@ $font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .h2, h2 {
-  color: $pw_pink; 
+  color: $heading-color; 
   font-family: $font-heading;
   font-size: 2.25rem;     // 36px
   line-height: 1.3;
@@ -21,7 +22,7 @@ $font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .h3, h3 {
-  color: $pw_pink; 
+  color: $heading-color; 
   font-family: $font-heading;
   font-size: 1.75rem;     // 28px
   line-height: 1.4;
@@ -29,7 +30,7 @@ $font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .h4, h4 {
-  color: $pw_pink; 
+  color: $heading-color; 
   font-family: $font-heading;
   font-size: 1.5rem;      // 24px
   line-height: 1.4;
@@ -37,7 +38,7 @@ $font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .h5, h5 {
-  color: $pw_pink; 
+  color: $heading-color; 
   font-family: $font-heading;
   font-size: 1.25rem;     // 20px
   line-height: 1.4;
@@ -45,7 +46,7 @@ $font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .h6, h6 {
-  color: $pw_pink; 
+  color: $heading-color; 
   font-family: $font-heading;
   font-size: 1.125rem;    // 18px
   line-height: 1.4;
@@ -63,7 +64,7 @@ p, .p {
 
 a {
     font-weight: 600;
-    color: $pw_pink; 
+    color: $heading-color; 
     &:hover {
         color: $pw_purple; 
     }

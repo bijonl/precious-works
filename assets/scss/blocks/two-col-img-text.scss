@@ -2,6 +2,10 @@
     .two-col-container {
         .two-col-row {
             .text-col {
+                @media (max-width: 768px) {
+                    padding-bottom: 20px; 
+                }
+            
                 .two-col-heading {
                     margin-bottom: 15px; 
                 }

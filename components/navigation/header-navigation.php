@@ -1,29 +1,43 @@
 <header id="site-header" class="site-header" role="banner">
     <div class="site-header__inner">
-        <nav id="site-navigation" class="main-navigation container" role="navigation" aria-label="Primary Menu">
-            <div class="row align-items-center">
-                <ul class="nav-list d-flex align-items-center">
-                    <!-- Left Links -->
-                    <li class="col"><a href="#services">Services</a></li>
-                    <li class="col"><a href="#work">Work</a></li>
+  <nav id="site-navigation" class="main-navigation container-fluid" role="navigation" aria-label="Primary Menu">
+        <div class="row align-items-center justify-content-between">
 
-                    <!-- Logo in the center -->
-                    <li class="nav-logo col-sm-2 text-center">
-                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo" aria-label="Homepage">
-                            <img class="mw-100 w-auto" src="<?php echo get_template_directory_uri(); ?>/assets/images/pw-logo.png" alt="Site Logo" />
-                        </a>
-                    </li>
 
-                    <!-- Right Links -->
-                    <li class="col text-end"><a href="#reviews">Reviews</a></li>
-                    <li class="col text-end"><a href="#about-me">About Me</a></li>
-                </ul>
+        <div class="d-flex mobile-nav">
+            <div class="nav-logo-mobile text-center d-block d-md-none">
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo" aria-label="Homepage">
+                <img class="mw-100 w-auto" src="<?php echo get_template_directory_uri(); ?>/assets/images/pw-logo.png" alt="Site Logo" />
+                </a>
             </div>
-        </nav>
+            <!-- Mobile Toggle Button -->
+            <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle navigation">
+                ☰
+            </button>
+        </div>
 
-        <!-- Optional: Mobile menu toggle -->
-        <!-- <button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false">
-            <span class="screen-reader-text">Toggle navigation</span>
-        </button> -->
+
+        <!-- Desktop -->
+        <div class="nav-logo text-center text-sm-start d-none d-md-flex">
+            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo col" aria-label="Homepage">
+            <img class="mw-100 w-auto" src="<?php echo get_template_directory_uri(); ?>/assets/images/pw-logo.png" alt="Site Logo" />
+            </a>
+             <ul class="nav-list-desktop d-md-flex align-items-center col" id="primary-menu">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#about-me">About Me</a></li>
+            </ul>
+        </div>
+
+        <!-- Menu Items Mobile -->
+        <ul class="nav-list d-md-none align-items-center" id="primary-menu">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#about-me">About Me</a></li>
+        </ul>
+        </div>
+    </nav>
     </div>
 </header>
