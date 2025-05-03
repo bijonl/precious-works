@@ -10,4 +10,16 @@ document.addEventListener('DOMContentLoaded', function () {
       menu.classList.toggle('open');
     });
   }
+
+    const header = document.getElementById('site-header');
+
+    function handleScroll() {
+        if (window.scrollY > 1) {
+        header.classList.add('is-sticky');
+        } else {
+        header.classList.remove('is-sticky');
+        }
+    }
+
+    window.addEventListener('scroll', handleScroll);
 });

@@ -1,65 +1,81 @@
-.site-header__inner {
-    padding-top: 10px; 
-    padding-bottom: 10px; 
-    border-bottom: dashed 1px $pw_purple; 
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    nav {
-        .nav-list, .nav-list-desktop {
-            margin-bottom: 10px; 
-            li {
-                list-style: none;
-                a {
-                    font-size: 26px; 
-                    text-decoration: none;
+.site-header {
+    &.is-sticky {
+        .site-header__inner { 
+            border-bottom: solid 2px $pw_purple; 
+            .nav-logo {
+                justify-content: space-between;
+                img {
+                    transition: all 0.25s ease-in-out;
+                    height: 70px; 
                 }
             }
-           
         }
-        .nav-list-desktop {
-            justify-content: space-evenly;
-        }
-        .nav-logo {
-            justify-content: space-between;
-            img {
-                height: 70px; 
-            }
+    }
+    .site-header__inner {
+        padding-top: 10px; 
+        padding-bottom: 10px; 
+        border-bottom: dashed 1px $pw_purple; 
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: $pw_white;
+        right: 0;
+        nav {
+            .nav-list, .nav-list-desktop {
+                margin-bottom: 10px; 
+                li {
+                    list-style: none;
+                    a {
+                        font-size: 26px; 
+                        text-decoration: none;
+                    }
+                }
             
+            }
+            .nav-list-desktop {
+                justify-content: space-evenly;
+            }
+            .nav-logo {
+                justify-content: space-between;
+                img {
+                    height: 130px; 
+                    transition: all 0.25s ease-in-out;
 
-        }
-        .mobile-nav {
-            display: none; 
-            padding-bottom: 15px;
-            .menu-toggle {
-                font-size: 65px;
-                background: transparent; 
-                color: $pw_purple; 
-                border: none; 
-                display: none
+                }
+                
+
             }
-             @media (max-width: 768px) {
-                display: block; 
-            }
-            
-            justify-content: space-between;
-            .nav-logo-mobile {
+            .mobile-nav {
                 display: none; 
+                padding-bottom: 15px;
+                .menu-toggle {
+                    font-size: 65px;
+                    background: transparent; 
+                    color: $pw_purple; 
+                    border: none; 
+                    display: none
+                }
                 @media (max-width: 768px) {
                     display: block; 
                 }
-                img {
-                        @media (max-width: 768px) {
+                
+                justify-content: space-between;
+                .nav-logo-mobile {
+                    display: none; 
+                    @media (max-width: 768px) {
                         display: block; 
-                        height: 100px; 
+                    }
+                    img {
+                            @media (max-width: 768px) {
+                            display: block; 
+                            height: 100px; 
+                        }
                     }
                 }
-            }
 
+            }
+            
         }
-         
     }
 }
 

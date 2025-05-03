@@ -3,18 +3,23 @@ a.wp-block-button__link, .wp-element-button, .pw-solid-button {
     color: $pw_purple; 
     text-transform: uppercase;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 22px;
     font-weight: 600; 
     padding: 0;
     padding-top: 7px;
     padding-bottom: 7px;
     border-radius: 7px;
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-left: 16px;
+    padding-right: 16px;
     transition: all 0.25s ease-in;
     &:hover {
         background-color: $pw_purple; 
         color: $pw_yellow; 
+    }
+    &.header-button {
+        background-color: $pw_pink; 
+        color: $pw_white; 
+
     }
 }
 
@@ -24,7 +29,7 @@ a.wp-block-button__link, .wp-element-button, .pw-solid-button {
     color: $pw_purple; 
     text-transform: uppercase;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 22px;
     font-weight: 600; 
     padding: 0;
     transition: all 0.25s ease-in;
