@@ -56,6 +56,9 @@
           position: relative;
           flex-direction: column;
           transition: visibility 0.25s ease-in-out, margin-top 0.25s ease-in-out;
+          @media (min-width: 768px) and (max-width: 1024px) {
+            font-size: 18px; ;
+          }
 
           @media (prefers-reduced-motion: reduce) {
             transition: none !important;

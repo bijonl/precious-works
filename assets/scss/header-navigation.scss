@@ -17,6 +17,7 @@
         border-bottom: dashed 1px $pw_purple; 
         position: fixed;
         top: 0;
+        z-index: 99999;
         left: 0;
         background-color: $pw_white;
         right: 0;
@@ -26,8 +27,12 @@
                 li {
                     list-style: none;
                     a {
-                        font-size: 26px; 
+                        font-size: 22px; 
                         text-decoration: none;
+                         @media (min-width: 768px) and (max-width: 1024px) {
+                            font-size: 20px;
+                            justify-content: center;
+                        }
                     }
                 }
             
@@ -48,17 +53,19 @@
             .mobile-nav {
                 display: none; 
                 padding-bottom: 15px;
+                 @media (max-width: 768px) {
+                    display: block; 
+                }
                 .menu-toggle {
                     font-size: 65px;
                     background: transparent; 
                     color: $pw_purple; 
                     border: none; 
-                    display: none
+                    @media (max-width: 768px) {
+                        display: block
+                    }
                 }
-                @media (max-width: 768px) {
-                    display: block; 
-                }
-                
+               
                 justify-content: space-between;
                 .nav-logo-mobile {
                     display: none; 
@@ -81,7 +88,7 @@
 
 
 // Mobile Nav Logic
-#primary-menu {
+#primary-menu-mobile {
   @media (max-width: 768px) {
     transition: all 0.3s ease-in-out;
     display: none;

@@ -8,7 +8,7 @@
     <section class="featured-work-section" id="<?php echo $anchor_id ?>">
         <div class="feature-work-container container">
             <div class="featured-work-title-row title-row row g-3">
-                <div class="col-sm-7 title-col">
+                <div class="col-lg-7 title-col">
                     <h2>Featured Projects - More Coming Soon!</h2>
                     <p> I focus on delivering polished, straightforward results that fit 
                         the client's needs, from design to functionality. With experience 
@@ -27,7 +27,7 @@
                     $url = get_post_meta($project, 'project_url', true);                     
                     ?>
                     
-                    <div class="col-sm-6 mx-auto single-project" role="region" aria-label="Project: <?php echo esc_attr($title) ?>">
+                    <div class="col-lg-6 mx-auto single-project" role="region" aria-label="Project: <?php echo esc_attr($title) ?>">
                         <div class="project-content">
                             <div class="project-logo">
                                 <?php echo $image ?>

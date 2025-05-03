@@ -23,7 +23,12 @@
                         }
                     }
                     .hero-button-wrapper {
+                        @media (max-width: 768px) {
+                            display: flex; 
+                            flex-direction: column;
+                        }
                         a {
+                            margin-bottom: 20px; 
                             &:first-child {
                                 margin-right: 13px; 
                             }

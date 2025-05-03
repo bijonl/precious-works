@@ -9,7 +9,7 @@ function pw_render_testimonials_block( $attributes ) {
     <section class="testimonial-section" id="<?php echo $anchor_id; ?>" aria-labelledby="testimonial-heading">
         <div class="testimonial-container container">
             <div class="testimonial-title-row title-row row">
-                <div class="col-sm-6 title-col">
+                <div class="col-lg-6 title-col">
                     <h2 id="testimonial-heading">Reviews: Built on Trust. Proven by Results.</h2>
                     <p>
                         Precious Works and Bijon's approach isn't just about getting the job done—
@@ -25,7 +25,7 @@ function pw_render_testimonials_block( $attributes ) {
                     $content      = apply_filters( 'the_content', get_post_field( 'post_content', $id ) );
                     $quote_attr   = get_post_meta( $id, 'quote_attribute', true );
                     ?>
-                    <div class="testimonial-col col-sm-6">
+                    <div class="testimonial-col col-lg-6">
                         <article 
                             class="testimonial-content-wrapper" 
                             tabindex="0" 

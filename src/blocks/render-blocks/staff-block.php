@@ -10,7 +10,7 @@ function pw_render_staff_block( $attributes ) {
         <section class="staff-block-section" id="<?php echo $anchor_id ?>">
             <div class="staff-block-container container">
                 <div class="testimonial-title-row title-row row">
-                    <div class="col-sm-6 title-col">
+                    <div class="col-lg-6 title-col">
                         <h2>Meet the Fur-midable Team</h2>
                         <p>
                             They may nap on the job, but their impact is anything but lazy.
@@ -29,7 +29,7 @@ function pw_render_staff_block( $attributes ) {
 
                         if ( get_post_status( $staff_id ) ) { ?>
                             <div 
-                                class="staff-member-col col" 
+                                class="staff-member-col col-lg-6 col-xxl-3" 
                                 tabindex="0" 
                                 aria-labelledby="<?php echo esc_attr( $name_id ); ?>">
                                 <div class="staff-content-wrapper" style="background-image:url(<?php echo esc_url( $staff_image_url ); ?>);">

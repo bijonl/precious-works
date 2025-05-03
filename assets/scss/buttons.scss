@@ -16,6 +16,10 @@ a.wp-block-button__link, .wp-element-button, .pw-solid-button {
         background-color: $pw_purple; 
         color: $pw_yellow; 
     }
+    @media (max-width:768px) {
+        width: 100%; 
+        
+    }
     &.header-button {
         background-color: $pw_pink; 
         color: $pw_white; 

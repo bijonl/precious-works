@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   const toggleButton = document.querySelector('.menu-toggle');
-  const menu = document.getElementById('primary-menu');
+  const menu = document.getElementById('primary-menu-mobile');
   console.log('here'); 
 
   if (toggleButton && menu) {
