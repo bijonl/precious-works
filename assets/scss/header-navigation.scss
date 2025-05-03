@@ -1,7 +1,12 @@
 .site-header__inner {
     padding-top: 10px; 
-    padding-bottom: 0px; 
+    padding-bottom: 10px; 
     border-bottom: dashed 1px $pw_purple; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     nav {
         .nav-list, .nav-list-desktop {
             margin-bottom: 10px; 

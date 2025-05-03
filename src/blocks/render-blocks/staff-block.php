@@ -18,7 +18,7 @@ function pw_render_staff_block( $attributes ) {
                         </p>
                     </div>
                 </div>
-                <div class="staff-block-row row">
+                <div class="staff-block-row row g-5">
                     <?php foreach ( $staff_ids as $staff_id ) { 
                         // Fetch the staff member post
                         $staff_bio = get_post_field( 'post_content', $staff_id );
@@ -29,18 +29,18 @@ function pw_render_staff_block( $attributes ) {
 
                         if ( get_post_status( $staff_id ) ) { ?>
                             <div 
-                                class="staff-member-col col-sm-4 mx-auto" 
-                                style="background-image:url(<?php echo esc_url( $staff_image_url ); ?>);" 
+                                class="staff-member-col col" 
                                 tabindex="0" 
-                                aria-labelledby="<?php echo esc_attr( $name_id ); ?>"
-                            >
-                                <div class="overlay pet-overlay"></div>
-                                <div class="staff-position-name">
-                                    <h6 id="<?php echo esc_attr( $name_id ); ?>"><?php echo esc_html( $staff_name ); ?></h6>
-                                    <p><?php echo esc_html( $staff_position ); ?></p>
-                                </div>
-                                <div class="staff-member-content">
-                                    <?php echo wp_kses_post( $staff_bio ); ?>
+                                aria-labelledby="<?php echo esc_attr( $name_id ); ?>">
+                                <div class="staff-content-wrapper" style="background-image:url(<?php echo esc_url( $staff_image_url ); ?>);">
+                                    <div class="overlay pet-overlay"></div>
+                                    <div class="staff-position-name">
+                                        <h6 id="<?php echo esc_attr( $name_id ); ?>"><?php echo esc_html( $staff_name ); ?></h6>
+                                        <p><?php echo esc_html( $staff_position ); ?></p>
+                                    </div>
+                                    <div class="staff-member-content">
+                                        <?php echo wp_kses_post( $staff_bio ); ?>
+                                    </div>
                                 </div>
                             </div>
                         <?php }

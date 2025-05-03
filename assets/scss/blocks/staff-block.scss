@@ -2,26 +2,25 @@
   .staff-block-container {
     .staff-block-row {
       .staff-member-col {
-        position: relative;
-        aspect-ratio: 1 / 1;
-        margin-bottom: 10px;
-        background-size: cover;
-        border-left: solid 2px $pw_purple;
-        border-bottom: solid 2px $pw_purple;
-        border-top: solid 2px $pw_purple;
-        transition: all 0.3s ease-in-out;
-        outline: none;
-
-        &:last-child,
-        &:nth-child(3) {
+        .staff-content-wrapper {
+          position: relative;
+          aspect-ratio: 1 / 1;
+          margin-bottom: 10px;
+          background-size: cover;
+          border-left: solid 2px $pw_purple;
+          border-bottom: solid 2px $pw_purple;
+          border-top: solid 2px $pw_purple;
           border-right: solid 2px $pw_purple;
+
+          transition: all 0.3s ease-in-out;
+          outline: none;
         }
 
         // Shared interaction for hover and keyboard focus
         &:hover,
         &:focus-within {
           .pet-overlay {
-            opacity: 0.6;
+            opacity: 0.7;
           }
 
           .staff-member-content {
@@ -49,7 +48,9 @@
 
         .staff-member-content {
           visibility: hidden;
-          padding: 40px;
+          padding: 5px;
+          padding-left: 10px; 
+          font-size: 15px; 
           color: $pw_white;
           z-index: 9999;
           position: relative;
@@ -68,6 +69,8 @@
           left: 0;
           right: 0;
           padding-left: 12px;
+          padding-top: 5px;
+          padding-bottom: 5px;
           z-index: 9999;
 
           h6,
