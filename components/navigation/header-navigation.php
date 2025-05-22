@@ -25,7 +25,6 @@
                         aria-label="Toggle navigation menu"
                         aria-haspopup="true"
                     >
-                        ☰
                     </button>
                 </div>
 
@@ -35,11 +34,11 @@
                         <img class="mw-100 w-auto" src="<?php echo get_template_directory_uri(); ?>/assets/images/pw-logo.png" alt="Site Logo" />
                     </a>
                     <ul class="nav-list-desktop d-md-flex align-items-center col" id="primary-menu" role="menubar">
-                        <li role="none"><a href="#work" role="menuitem" tabindex="0">Work</a></li>
-                        <li role="none"><a href="#services" role="menuitem" tabindex="0">Services</a></li>
+                        <li role="none"><a href="<?php echo esc_url( home_url( '/' ))?>#work" role="menuitem" tabindex="0">Work</a></li>
+                        <li role="none"><a href="<?php echo esc_url( home_url( '/' ))?>#services" role="menuitem" tabindex="0">Services</a></li>
                         <li role="none"><a href="/reviews/" role="menuitem" tabindex="0">Reviews</a></li>
-                        <li role="none"><a href="#about-me" role="menuitem" tabindex="0">About Me</a></li>
-                        <li role="none"><a href="#staff" role="menuitem" tabindex="0">Staff</a></li>
+                        <li role="none"><a href="<?php echo esc_url( home_url( '/' ))?>#about-me" role="menuitem" tabindex="0">About Me</a></li>
+                        <li role="none"><a href="<?php echo esc_url( home_url( '/' ))?>#staff" role="menuitem" tabindex="0">Staff</a></li>
                         <li role="none"><a class="pw-solid-button header-button" href="mailto:bijonlb.dev@gmail.com" role="menuitem" tabindex="0">Contact Me</a></li>
                     </ul>
                 </div>
