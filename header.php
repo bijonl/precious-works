@@ -17,9 +17,4 @@
 <body <?php body_class(); ?>>
     <!-- Skip link for screen reader and keyboard users -->
     <a class="visually-hidden-focusable" href="#main-content">Skip to main content</a>
-    <!-- Site Wrapper -->
-    <div id="page" class="site">
-    <!-- Site Header -->
     <?php include(locate_template('components/navigation/header-navigation.php')); ?>
-<!-- Start of Main Content -->
-<main id="main-content" class="site-main" role="main">

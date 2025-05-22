@@ -1,6 +1,7 @@
 .site-header {
     &.is-sticky {
         .site-header__inner { 
+            position: fixed;
             border-bottom: solid 2px $pw_purple; 
             .nav-logo {
                 justify-content: space-between;
@@ -15,7 +16,7 @@
         padding-top: 10px; 
         padding-bottom: 10px; 
         border-bottom: dashed 1px $pw_purple; 
-        position: fixed;
+        position: relative;
         top: 0;
         z-index: 99999;
         left: 0;

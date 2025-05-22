@@ -68,7 +68,9 @@
         .staff-position-name {
           background: $pw_pink;
           position: absolute;
-          border-bottom: solid 2px $pw_purple;
+          bottom: 0; 
+          border-bottom: 0;
+          border-top: solid 1px;
           left: 0;
           right: 0;
           padding-left: 12px;

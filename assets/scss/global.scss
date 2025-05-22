@@ -36,6 +36,11 @@ section {
         font-weight: 600;
         font-style: italic;
     }
+    .button-wrapper {
+      @media(max-width: 920px) {
+        margin-top: 30px; 
+      }
+    }
 
 }
 
@@ -47,6 +52,14 @@ section {
     margin-bottom: 0; 
     font-weight: bold;
   }
+}
+
+strong {
+  color: $pw_pink; 
+}
+
+p.small-text {
+  font-size: 14px; 
 }
 
 // Example: Custom max-width for Bootstrap containers
