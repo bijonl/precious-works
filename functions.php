@@ -122,4 +122,108 @@ function prefix_disable_gutenberg($current_status, $post_type) {
 }
 
 
+// Add the ToC meta box
+function add_toc_meta_box() {
+    add_meta_box('post_toc', 'Table of Contents', 'toc_meta_box_callback', 'post', 'side', 'default');
+}
+add_action('add_meta_boxes', 'add_toc_meta_box');
+
+function toc_meta_box_callback($post) {
+    wp_nonce_field('toc_meta_box_nonce', 'toc_nonce');
+
+    $toc_items = get_post_meta($post->ID, '_post_toc', true);
+    if (!is_array($toc_items)) {
+        $toc_items = [];
+    }
+
+    echo '<div id="toc-items-container">';
+
+    if (empty($toc_items)) {
+        $toc_items[] = ['text' => '', 'url' => ''];
+    }
+
+    foreach ($toc_items as $index => $item) {
+        $text = esc_attr($item['text']);
+        $url = esc_attr($item['url']);
+        echo '
+        <p style="margin-bottom:10px;" data-index="'.$index.'">
+            <label>Text: <input type="text" name="post_toc['.$index.'][text]" value="'.$text.'" style="width: 40%; margin-right:5%;"></label>
+            <label>URL: <input type="text" name="post_toc['.$index.'][url]" value="'.$url.'" style="width: 40%; margin-right:5%;"></label>
+            <button type="button" class="remove-toc-item-button" style="color:#fff; background:#d9534f; border:none; padding:5px 10px; cursor:pointer;">Remove</button>
+        </p>';
+    }
+
+    echo '</div>';
+
+    echo '<button type="button" id="add-toc-item" style="margin-top:10px;">Add Item</button>';
+
+    ?>
+    <script>
+    (function(){
+      const container = document.getElementById('toc-items-container');
+      const addButton = document.getElementById('add-toc-item');
+
+      // Add new item
+      addButton.addEventListener('click', function() {
+        const index = container.children.length;
+        const p = document.createElement('p');
+        p.style.marginBottom = '10px';
+        p.setAttribute('data-index', index);
+        p.innerHTML = `
+          <label>Text: <input type="text" name="post_toc[${index}][text]" style="width: 40%; margin-right:5%;"></label>
+          <label>URL: <input type="text" name="post_toc[${index}][url]" style="width: 40%; margin-right:5%;"></label>
+          <button type="button" class="remove-toc-item-button" style="color:#fff; background:#d9534f; border:none; padding:5px 10px; cursor:pointer;">Remove</button>
+        `;
+        container.appendChild(p);
+      });
+
+      // Delegate remove button clicks
+      container.addEventListener('click', function(event) {
+        if (event.target && event.target.classList.contains('remove-toc-item-button')) {
+          const p = event.target.closest('p');
+          if (p) {
+            container.removeChild(p);
+            // After removal, re-index inputs so PHP receives continuous indexes
+            Array.from(container.children).forEach((child, i) => {
+              child.setAttribute('data-index', i);
+              const textInput = child.querySelector('input[type="text"][name*="[text]"]');
+              const urlInput = child.querySelector('input[type="text"][name*="[url]"]');
+              if (textInput) textInput.name = `post_toc[${i}][text]`;
+              if (urlInput) urlInput.name = `post_toc[${i}][url]`;
+            });
+          }
+        }
+      });
+    })();
+    </script>
+    <?php
+}
+
+
+// Save the meta box data
+function save_toc_meta_box_data($post_id) {
+    if (!isset($_POST['toc_nonce']) || !wp_verify_nonce($_POST['toc_nonce'], 'toc_meta_box_nonce')) {
+        return;
+    }
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    if (isset($_POST['post_toc']) && is_array($_POST['post_toc'])) {
+        $sanitized = [];
+        foreach ($_POST['post_toc'] as $item) {
+            $text = sanitize_text_field($item['text'] ?? '');
+            $url = esc_url_raw($item['url'] ?? '');
+            if ($text && $url) {
+                $sanitized[] = ['text' => $text, 'url' => $url];
+            }
+        }
+        update_post_meta($post_id, '_post_toc', $sanitized);
+    } else {
+        delete_post_meta($post_id, '_post_toc');
+    }
+}
+add_action('save_post', 'save_toc_meta_box_data');
+
+
+
 

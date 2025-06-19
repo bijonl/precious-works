@@ -2,8 +2,10 @@
 body {
   font-family: 'Inter', sans-serif;
   background-color: $pw_white; 
-  p {
-    margin-bottom: 0; 
+  &:not(.single) {
+    p {
+      margin-bottom: 0; 
+    }
   }
 }
 
@@ -78,4 +80,84 @@ p.small-text {
   padding-right: 1rem;
   margin-left: auto;
   margin-right: auto;
+}
+
+body.single h1 { font-size: 2em; }
+body.single h2 { font-size: 1.75em; }
+body.single h3 { font-size: 1.5em; }
+body.single h4 { font-size: 1.25em; }
+body.single h5 { font-size: 1em; }
+body.single h6 { font-size: 0.875em; }
+
+body.single strong {
+  color: $pw_text_color; 
+}
+
+body.single a:hover {
+  color: $pw_pink; 
+}
+
+
+body.single h2,
+body.single h3,
+body.single h4,
+body.single h5,
+body.single h6 {
+  margin-bottom: 30px;
+}
+
+.wp-block-quote {
+  position: relative;
+  font-size: 2rem; /* medium text */
+  font-style: italic;
+  border: solid 2px $pw_purple; 
+  margin: 2rem 0;
+  padding: 4rem 1.5rem;
+  color: #333;
+}
+
+.wp-block-quote p {
+  margin: 0;
+  padding-top: 12px;
+  padding-bottom: 12px; 
+  font-size: 20px;
+  color: $pw_pink
+}
+
+.wp-block-quote::before {
+  content: "“";
+  position: absolute;
+  top: 0px;
+  left: 10px;
+  font-size: 9rem;
+  color: $pw_yellow;
+  line-height: 1;
+  font-family: serif;
+}
+
+.wp-block-quote::after {
+  content: "”";
+  position: absolute;
+  bottom: -65px;
+  right: 15px;
+  font-size: 9rem;
+  color: $pw_yellow;
+  line-height: 1;
+  font-family: serif;
+}
+
+body.single aside {
+  li {
+    padding-bottom: 10px; 
+    a {
+      font-size: 17px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+}
+
+.ai-text {
+  font-size: 13px; 
+  text-align: justify;
 }
