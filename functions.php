@@ -271,5 +271,36 @@ function save_toc_meta_box_data($post_id) {
 add_action('save_post', 'save_toc_meta_box_data');
 
 
+function add_custom_og_meta_tags() {
+    if (is_single()) {
+        global $post;
+
+        // Get Yoast SEO title & description
+        $yoast_title = get_post_meta($post->ID, '_yoast_wpseo_title', true);
+        $yoast_description = get_post_meta($post->ID, '_yoast_wpseo_metadesc', true);
+
+        // Fallbacks if Yoast fields are empty
+        $meta_title = $yoast_title ? $yoast_title : get_the_title($post);
+        $meta_description = $yoast_description ? $yoast_description : wp_trim_words(strip_tags($post->post_content), 30);
+
+        // Get featured image URL
+        $thumbnail_id = get_post_thumbnail_id($post->ID);
+        $image_url = $thumbnail_id ? wp_get_attachment_url($thumbnail_id) : '';
+
+        ?>
+        <meta property="og:title" content="<?php echo esc_attr($meta_title); ?>" />
+        <meta property="og:description" content="<?php echo esc_attr($meta_description); ?>" />
+        <meta property="og:url" content="<?php the_permalink(); ?>" />
+        <meta property="og:site_name" content="Precious Works" />
+        <meta property="og:type" content="article" />
+        <?php if ($image_url): ?>
+            <meta property="og:image" content="<?php echo esc_url($image_url); ?>" />
+        <?php endif; ?>
+        <?php
+    }
+}
+add_action('wp_head', 'add_custom_og_meta_tags');
+
+
 
 
