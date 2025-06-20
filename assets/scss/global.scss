@@ -157,7 +157,41 @@ body.single aside {
   }
 }
 
+nav.mobile-toc { 
+  ul {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  li {
+    border-right: solid 1px $pw_pink; 
+    padding-right: 10px; 
+    padding-left: 10px; 
+    margin-bottom: 10px;
+    padding-bottom: 0; 
+    a {
+      font-size: 17px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    &:last-child {
+      border-right: 0; 
+    }
+  }
+}
+
 .ai-text {
   font-size: 13px; 
+  text-align: justify;
+}
+
+.color-pink {
+  color: $pw_pink; 
+}
+
+.blog-meta-header {
+  border-bottom: dashed 2px $pw_yellow;
+}
+
+.post-content {
   text-align: justify;
 }

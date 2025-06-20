@@ -122,6 +122,52 @@ function prefix_disable_gutenberg($current_status, $post_type) {
 }
 
 
+
+// Add the ToC meta box
+function add_subtitle_meta_box() {
+    add_meta_box('subtitle', 'Subtitle', 'subtitle_box_callback', 'post', 'side', 'default');
+}
+add_action('add_meta_boxes', 'add_subtitle_meta_box');
+
+function subtitle_box_callback($post) {
+    // Retrieve current value based on post ID
+    $value = get_post_meta($post->ID, '_subtitle', true);
+
+    // Output the textarea
+    echo '<label for="subtitle_field">Enter a subtitle:</label>';
+    echo '<textarea style="width:100%;" id="subtitle_field" name="subtitle_field" rows="4">' . esc_textarea($value) . '</textarea>';
+
+    // Add nonce for security
+    wp_nonce_field('subtitle_meta_box_nonce_action', 'subtitle_meta_box_nonce');
+}
+ 
+function save_subtitle_meta_box($post_id) {
+    // Check nonce
+    if (!isset($_POST['subtitle_meta_box_nonce']) || 
+        !wp_verify_nonce($_POST['subtitle_meta_box_nonce'], 'subtitle_meta_box_nonce_action')) {
+        return;
+    }
+
+    // Check for autosave
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    // Check user permission
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    // Sanitize and save
+    if (isset($_POST['subtitle_field'])) {
+        update_post_meta($post_id, '_subtitle', sanitize_textarea_field($_POST['subtitle_field']));
+    }
+}
+add_action('save_post', 'save_subtitle_meta_box');
+
+
+
+
 // Add the ToC meta box
 function add_toc_meta_box() {
     add_meta_box('post_toc', 'Table of Contents', 'toc_meta_box_callback', 'post', 'side', 'default');

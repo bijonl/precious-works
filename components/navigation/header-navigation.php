@@ -22,10 +22,25 @@
                         class="menu-toggle" 
                         aria-controls="primary-menu-mobile" 
                         aria-expanded="false" 
-                        aria-label="Toggle navigation menu"
+                        aria-label="Toggle navigation menu" 
                         aria-haspopup="true"
                     >
+                        <!-- Hamburger Icon -->
+                        <svg 
+                            width="24" 
+                            height="24" 
+                            viewBox="0 0 24 24" 
+                            fill="none" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            aria-hidden="true" 
+                            focusable="false"
+                        >
+                            <rect y="4" width="24" height="2" fill="currentColor"/>
+                            <rect y="11" width="24" height="2" fill="currentColor"/>
+                            <rect y="18" width="24" height="2" fill="currentColor"/>
+                        </svg>
                     </button>
+
                 </div>
 
                 <!-- Desktop -->
