@@ -303,11 +303,14 @@ add_action('wp_head', 'add_custom_og_meta_tags');
 
 add_filter('render_block', function ($block_content, $block) {
 
-    // Only wrap heading and paragraph blocks
-    if (in_array($block['blockName'], ['core/heading', 'core/paragraph'])) {
-        return '<div class="container"><div class="row"><div class="col-12">'
-            . $block_content .
-            '</div></div></div>';
+    if ( in_array( $block['blockName'], [ 'core/heading', 'core/paragraph', 'gravityforms/form' ] ) ) {
+    $column_class = ( $block['blockName'] === 'gravityforms/form' ) 
+        ? 'col-sm-8 mx-auto' 
+        : 'col-12';
+
+    return '<div class="container"><div class="row"><div class="' . esc_attr( $column_class ) . '">'
+        . $block_content .
+        '</div></div></div>';
     }
 
     return $block_content;
