@@ -1,3 +1,9 @@
+body:has(.homepage-hero-section) {
+    .site-header__inner {
+        position: absolute;
+    }
+}
+
 .site-header {
     &.is-sticky {
         .site-header__inner { 
@@ -16,7 +22,6 @@
         padding-top: 10px; 
         padding-bottom: 10px; 
         border-bottom: dashed 1px $pw_purple; 
-        position: relative;
         top: 0;
         z-index: 99999;
         left: 0;

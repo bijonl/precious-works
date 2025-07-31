@@ -301,6 +301,19 @@ function add_custom_og_meta_tags() {
 }
 add_action('wp_head', 'add_custom_og_meta_tags');
 
+add_filter('render_block', function ($block_content, $block) {
+
+    // Only wrap heading and paragraph blocks
+    if (in_array($block['blockName'], ['core/heading', 'core/paragraph'])) {
+        return '<div class="container"><div class="row"><div class="col-12">'
+            . $block_content .
+            '</div></div></div>';
+    }
+
+    return $block_content;
+}, 10, 2);
+
+
 
 
 

@@ -7,17 +7,24 @@
 
     <section class="featured-work-section" id="<?php echo $anchor_id ?>">
         <div class="feature-work-container container">
-            <div class="featured-work-title-row title-row row g-3">
-                <div class="col-lg-7 title-col">
-                    <h2>Featured Projects - More Coming Soon!</h2>
-                    <p> I focus on delivering polished, straightforward results that fit 
-                        the client's needs, from design to functionality. With experience 
-                        across a range of industries—law, media, nonprofits, and the arts—I've 
-                        tailored my approach to each unique need. Check out a few of my recent 
-                        projects below.
-                    </p>
+            <?php if(is_front_page()) { ?>
+                <div class="featured-work-title-row title-row row g-3 align-items-center">
+                    <div class="col-lg-6 title-col">
+                        <h2><?php echo is_front_page() ? 'Featured Projects - More Coming Soon!' : get_the_title(); ?> </h2>
+                        <p> I focus on delivering polished, straightforward results that fit 
+                            the client's needs, from design to functionality. With experience 
+                            across a range of industries—law, media, nonprofits, and the arts—I've 
+                            tailored my approach to each unique need. Check out a few of my recent 
+                            projects below.
+                        </p>
+                    </div>
+                    <div class="col-lg-6 button-wrapper text-lg-end">
+                        <a href="/precious-projects/" target="_self" rel="noopener noreferrer" class="pw-solid-button" aria-label="see all projects" title="visit precious.works/precious-projects"> 
+                            See All Projects                              
+                        </a>
+                    </div>
                 </div>
-            </div>
+            <?php } ?>
             <div class="featured-work-row row">
                 <?php if($project_ids) {
                     foreach($project_ids as $project) { ?>
@@ -39,14 +46,13 @@
                                 <?php echo $description ?>
                             </div>
                             <div class="project-button">
-                                <a href="<?php echo $url?>" 
-                                target ="_blank" 
+                                <a href="<?php echo esc_url($url); ?>" 
+                                target="_blank" 
                                 rel="noopener noreferrer"
                                 class="pw-solid-button"
-                                aria-label="visit <?php echo $url ?>"
-                                title="visit <?php echo $url ?>"
-                                > 
-                                    Visit <?php echo esc_attr($title) ?>
+                                aria-label="View project: <?php echo esc_attr($title); ?>"
+                                title="View project: <?php echo esc_attr($title); ?>">
+                                    See Project
                                 </a>
                             </div>
                         </div>

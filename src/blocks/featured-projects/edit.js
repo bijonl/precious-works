@@ -27,7 +27,7 @@ const Edit = (props) => {
         : [];
 
     useEffect(() => {
-        apiFetch({ path: '/wp/v2/projects' }).then(
+        apiFetch({ path: '/wp/v2/projects?per_page=100' }).then(
             (result) => setProjectList(result),
             (error) => {
                 console.error('Error fetching project data:', error);
